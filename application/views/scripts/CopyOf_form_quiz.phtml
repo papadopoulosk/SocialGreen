@@ -1,0 +1,181 @@
+<div class="row-fluid span8 offset2">
+<div id="myCarousel" class="carousel slide">
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ol>
+  <!-- Carousel items -->
+  <div class="carousel-inner">
+    <div class="active item">…</div>
+    <div class="item">…</div>
+    <div class="item">…</div>
+  </div>
+  <!-- Carousel nav -->
+  <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+  <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+</div>
+
+
+
+
+<div id="quizContainer">
+
+<form id="quiz" action="<?= $this->element->getAction(); ?>" method="<?= $this->element->getMethod(); ?>">
+  
+   
+   <div id="q_1_container" active="true">
+   		 <?= $this->element->q_1; ?>
+   </div>
+   <div id="q_2_container" class="hidden">
+   		<?= $this->element->q_2; ?>
+   </div>
+   <div id="q_3_container" class="hidden">
+   		<?= $this->element->q_3; ?>
+   </div>
+   <div id="q_4_container" class="hidden">
+   		<?= $this->element->q_4; ?>
+   </div>
+   <div id="q_5_container" class="hidden">
+   		<?= $this->element->q_5; ?>
+   </div>
+   <div id="submit_container" class="hidden">
+   		<p>Thank you for your time!</p>
+   		
+   		
+   		<?= $this->element->submit;?>
+   		<hr>
+   		<!-- <p>You can also provide an e-mail so as to inform you about future updates!</p>
+   		<p><a title="Feedback!" class="btn btn-info" href="#contactModal" data-toggle="modal">Complete the form!</a></p>  -->
+   	
+		<div class="fb-like socialShare" data-href="http://socialgreenproject.com/about/quiz" data-send="false" data-layout="box_count" data-width="450" data-show-faces="false" data-font="lucida grande"></div>
+		<script>(function(d, s, id) {  var js, fjs = d.getElementsByTagName(s)[0];  if (d.getElementById(id)) return;  js = d.createElement(s); js.id = id;  js.src = "//connect.facebook.net/el_GR/all.js#xfbml=1";  fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));</script>
+		<div class="g-plus socialShare" data-action="share" data-annotation="vertical-bubble" data-height="60" data-href="http://socialgreenproject.com/about/quiz"></div>
+		<script type="text/javascript">  (function() {    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;    po.src = 'https://apis.google.com/js/plusone.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);  })();</script>
+		<div class="socialShare" >
+		<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://socialgreenproject.com/about/quiz" data-text="I've just taken the quiz! Check it out!" data-via="SGreen_Project">Tweet</a>
+		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+		</div>   		
+	 
+   </div>
+ 
+</form>
+</div>
+ <div id="Quizfooter" class="row-fluid span8 offset2">
+   		<div class="progress progress-success">
+	  		<div id="questionBar" class="bar" style="width:0%"></div>
+		</div>
+		<ul class="pager">
+  			<li><a id="back" href="#">Previous</a></li>
+  			<li><a id="next" href="#">Next</a></li>
+		</ul>
+</div>
+</div>
+<div id="fb-root"></div>
+<!-- facebook Like 
+    ================================================== -->
+
+
+<!-- google plus share 
+    ================================================== -->
+<!-- Place this tag after the last share tag. -->
+
+
+<script>
+	$("input.radio").change(function(){
+			next(this);
+		});
+	$("form#quiz").submit(function(){
+			var data = $(this).serialize();
+			var url = '<?php echo $this->baseUrl("/about/submit-Quiz/"); ?>';
+			$("input#submit").attr("value", "Processing...");
+			$("input#submit").attr("class", "btn btn-success");
+			$.ajax({
+			  type: "POST",
+			  url: url,
+			  data: data,
+			  success: function(resp){
+				  if (resp=="1"){
+				  	$("input#submit").attr("value", "Your answers are saved!");
+				  } else {
+					  $("input#submit").attr("value", "Error during processing");
+					  $("input#submit").attr("class", "btn btn-warning");
+					  $("div#submit_container").prepend('<div id="log" class="alert"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Warning!</strong> Please check your answers again.</div>');
+				  }
+			  }
+			});
+			return false;
+	});
+
+	$("a#back").click(function (){
+		var $item = $("form#quiz").find("div[active=true]");
+		$item.attr("active","false");
+		back($item.find("input[type=radio]"));
+	});
+	
+	$("a#next").click(function (){
+	 	$item = $("form#quiz").find("div[active=true]");
+	 	$item.attr("active","false");
+		next($item.find("input[type=radio]"));
+	});
+	
+	function back($this){
+		var question = $($this).attr("name");
+		var container = question+"_container";
+		$("#"+container).fadeOut("slow", function(){
+				$("#"+container).attr("active","false");
+				//$(this).attr("active","false");
+				var name = question;
+				var toRemove = 'q_';
+				var id = name.replace(toRemove,'');
+				var intId = parseInt(id)-1;
+				var toShow = "#"+"q_"+intId+"_container";
+				if (id=="5") { toShow="#submit_container";};
+				$(toShow).fadeIn("slow");
+				$(toShow).attr("active","true");
+				$("#questionBar").css("width",2*intId+"0%");
+			});
+	}
+
+	function next($this){
+		var question = $($this).attr("name");
+		var container = question+"_container";
+		$("#"+container).fadeOut("slow", function(){
+				$("#"+container).attr("active","false");
+				//$(this).attr("active","false");
+				var name = question;
+				var toRemove = 'q_';
+				var id = name.replace(toRemove,'');
+				var toShow = "#"+"q_"+(parseInt(id)+1)+"_container";
+				if (id=="5") { toShow="#submit_container";};
+				$(toShow).fadeIn("slow").toggleClass("hidden");
+				//alert("width:"+2*parseInt(id)+"0%");
+				$(toShow).attr("active","true");
+				$("#questionBar").css("width",2*parseInt(id)+"0%");
+			});
+	}
+
+    //Canvas Countdown
+	/*$(function () {
+	    var width = 100;
+	    var height = 100;
+	    $('canvas').width(width).height(height);
+	    var ctx = $('canvas')[0].getContext('2d');
+	    var i = 5;
+	    (function draw() {
+	        with(ctx) {
+	            fillStyle = '#000';
+	            fillRect(0, 0, width, height);
+	            fillStyle = '#0f0';
+	            font = 'bold 20px Georgia';
+	            fillText(":"+i, 50, 50);
+	            fill();
+	        }
+	        if (!(i--)) {
+					alert("END");
+			        return;
+	        }
+	        setTimeout(draw, 1000);
+	    })();
+	});*/
+</script>

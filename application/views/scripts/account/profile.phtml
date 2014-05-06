@@ -1,0 +1,451 @@
+<?php  $accountsFriends = $this->accounts; ?>
+<?php $activeUser = $this->activeAccount; ?>
+<?php  $accounts = $this->accounts; ?>
+<?php $userbadges = $this->userbadges;?>
+<?php  $useractivity = $this->results2; ?>
+
+<?php  $seriesColor = array("#FF9900", "#00F", "#BB0000"); ?>
+<?php  $usernamesTemp = $this->usernames; ?>
+
+<?php  //$auth = Zend_Auth::getInstance();
+		//$username = $auth->getIdentity()->username;?>
+<?php  $badges = $this->badges; ?>
+<?php $badgesPrefix = $this->badgesPrefix; ?>
+<?php $imgPrefix = $this->imgPrefix; ?>
+<?php $badgesPrefix = $this->badgesPrefix; ?>
+<?php 
+	$sum=0;
+	foreach ($this->allActivity as $activityTemp)
+	{
+		//$sum = $sum +  (1*$activityTemp->glass)+(2*$activityTemp->plastic)+(3*$activityTemp->aluminium);
+		$sum = $sum + $activityTemp->leafs;
+	}?>
+
+<?php  
+	foreach ($accounts as $account)
+	{      	
+    	if($account->username == $activeUser)
+    	{ 
+			$leaves = $account->leafs;
+			$username = $account->username;
+			$fullname = $account->fullname;
+			$avatar = $account->avatar;
+			$description = $account->description;
+			$glass = $account->glass;
+			$plastic = $account->plastic;
+			$aluminium = $account->aluminium;
+			$lastActive = $account->date;
+			$website = $account->url;
+			$fb = $account->fb;
+			$tw = $account->tw;
+		}
+	}
+	
+	
+	?>
+
+<?php /* <header class="desktop-header navbar-fixed-top ">
+	<div class="container">
+			<img alt="Sociallgreen" title="Sociallgreen" id="logo" class="pull-left span2" src="<?php echo $this->baseUrl("images/logo.png"); ?>"/>
+			<?php echo $this->LoggedInAs(); ?>
+	</div>
+</header>
+*/ ?>
+
+<!-- Modal Badges -->
+<div id="ModalBadges" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="ModalBadgesLabel" aria-hidden="true">
+  <div class="modal-header lead-background">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove icon-white"></i></button>
+    <h6 id="ModalBadgesLabel" class="title-leaderboard">Sample Badges</h6>
+  </div>
+  <div class="modal-body">
+						
+		<?php 
+		$counter = 1; 
+				
+		foreach ($badges as $badge) 
+		{ 
+			?>
+				<!-- Arxi siras -->
+				<?php
+				
+				if ($counter > 1)
+				{ 
+					echo "<hr>";
+				
+				}?>
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="row-fluid">
+							<div class="span4 text-center">
+								<img class="badges2" src="<?php echo $this->baseUrl($badgesPrefix.$badge->path); ?>">
+							</div>
+							<div class="span8">
+								<h3 class="text-badges"><?php echo $badge->title; ?></h3>
+								<p><?php echo $badge->description; ?></p>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			<?php
+			$counter++;
+		}
+		?>	
+
+  </div>
+  <!-- <div class="modal-footer">
+    <button class="btn btn-glor pull-left" data-dismiss="modal" aria-hidden="true">Close</button>
+  </div> -->
+</div>
+
+
+
+<div id="projects" class="page">
+		<section class="container-fluid">
+			<div class="row-fluid">
+				<section class="container">
+					<div class="row-fluid keno2">
+						<article class="span2 offset5">
+							<!-- <h1 class="main-heading"><?php echo $username;?></h1> -->
+							
+							<img style="height:150px;" alt="<?php echo $username;?>" title="<?php echo $username;?>" class="img-responsive" src="<?php echo $this->controller->imagesfb($avatar,$this->baseUrl()); ?>">
+							
+							<!-- <img class="profile-photo media-object" src="<?php //echo $this->baseUrl($avatar); ?>">  -->
+						</article>
+						
+					</div><!-- row : ends -->
+					
+					<div class="row-fluid projects-wrap add-top">
+						<article class="span3 projects-block add-top">
+							 							
+							<div class="row-fluid">
+								<article class="span12 text-right">
+									<span class="score-heading-green"><?php echo $aluminium; ?></span> <img class="img-materials-height-alum" src="<?php echo $this->baseUrl("/images/materials/alum.png");?>">
+								</article>
+							</div><!-- row : ends -->
+							
+							<div class="row-fluid">
+								<article class="span12 text-right">
+									 <span class="score-heading-green"><?php echo $plastic; ?></span> <img class="img-materials-height-plastic" src="<?php echo $this->baseUrl("/images/materials/plastic.png");?>">
+								</article>
+							</div><!-- row : ends -->
+							
+							<div class="row-fluid">
+								<article class="span12 text-right">
+									<span class="score-heading-green"><?php echo $glass; ?></span> <img class="img-materials-height-glass" src="<?php echo $this->baseUrl("/images/materials/glass.png");?>">
+								</article>
+							</div><!-- row : ends -->
+							
+							<div class="row-fluid">
+								<article class="span12 cubicles rounded-bottomleft rounded-topleft text-right">
+									<span class="score-heading-white"><?php echo $leaves;?></span><br><span class="info-text">total leaves saved </span>
+								</article>
+							</div><!-- row : ends -->
+							
+						</article>
+						
+						<article class="span6 ">
+							<div class="row-fluid">
+								<article class="span12">
+								<div class="tabbable">
+									<h1><?php echo $fullname;?></h1>
+									<ul class="nav nav-tabs">
+										    <li class="active"><a href="#Performance" data-toggle="tab">Performance</a></li>
+										    <li><a href="#About" data-toggle="tab" >About</a></li>
+										    <li><a href="#Activity" data-toggle="tab">Activity</a></li>
+										    
+									</ul>
+									
+						            <div class="tab-content">
+										
+										<!-- About Content -->
+						            	<div class="tab-pane" id="About">
+						            		
+											<span class="promotional"><?php echo $description;?>
+											</span>
+
+						              	</div>
+					              	
+										<!-- Activity Content -->
+										<div class="tab-pane" id="Activity">
+										
+											<h4 class="col-high">Latest recycling!</h4>
+											
+											 <table class="table table-hover table-stripped">
+											<?php   foreach ( $useractivity as $activity) { ?>
+											
+												<?php if ($activity->quantity>0) {?>
+												<tr>
+													<td style="vertical-align: bottom;">
+														<!-- <a class="pull-left" href="<?php //echo $this->baseUrl('account/profile/').'?user='.$activity->username;?>">
+							                    			<img class="media-object thumbnail avatar" src="<?php //echo $this->baseUrl($imgPrefix."thumb-".$activity->avatar);?>">
+							                    		</a> -->
+							                    		
+							                    		
+							                    			<span class="score-heading-green"><?php echo 1*$activity->glass+2*$activity->plastic+3*$activity->aluminium; ?></span><span class="info-titles-green">leafs</span>
+							                    		
+													</td>
+													<td style="vertical-align: bottom;">
+														<!-- <?php echo ucfirst($activity->username);  ?> saved <?php echo 1*$activity->glass+2*$activity->plastic+3*$activity->aluminium; ?> leafs on <?php echo date("d-M",strtotime($activity->date)) ?>! <span class="muted"> -->
+														
+														<span class="muted">
+														<!-- <br> -->
+														<img class="img-materials-height" src="<?php echo $this->baseUrl("/images/materials/alum.png");?>"> = <?php echo $activity->aluminium; ?>
+														<img class="img-materials-height" src="<?php echo $this->baseUrl("/images/materials/plastic.png");?>"> =<?php echo $activity->plastic; ?>
+														<img class="img-materials-height" src="<?php echo $this->baseUrl("/images/materials/glass.png");?>"> = <?php echo $activity->glass; ?>
+														</span>
+													</td>
+													<td style="vertical-align: bottom;">
+													saved on <?php echo date("d-M",strtotime($activity->date)) ?>!
+													</td>
+												</tr>
+											
+												<?php } ?>
+											<?php } ?>
+											</table>
+											<span class="pull-left"><?php //echo $this->paginationControl($this->results2, 'Sliding', 'pagination.phtml'); ?></span>
+										</div>
+										
+										<!-- Performance Content -->
+										<div class="tab-pane active" id="Performance">
+											<h4 class="col-high">Check the progress of our users - Activity over time</h4>
+						            		
+						    					<div id="chartdiv"> </div>
+						    					<?php // foreach($this->paginator as $record)
+											    //{
+											     //   echo $record['email'].'\n';
+											    //}
+											    //echo $this->paginationControl($this->paginator, 'Sliding', 'pagination.phtml');
+											    ?>
+											    <div id="diagramUserNamesPanel" class="row-fluid">
+											    	<div class="span8 ">
+											    	<ul>
+											    		<?php 
+											    			$colorCounter = 0;
+											    			foreach ($usernamesTemp as $fullName){
+																echo "<li><span style='background-color:".$seriesColor[$colorCounter]."'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>".$fullName."</span></li>";
+																$colorCounter++;
+															}
+											    		?>
+											    	</ul>
+											    	</div>
+											  </div>
+						              	 </div>
+									</div>
+								</div>
+								</article>
+							</div><!-- row : ends -->
+						</article>
+						
+						<article class="span3 projects-block add-top">
+							<div class="row-fluid custom-margin-2">
+								<div class="span12 cubicles rounded-topright ">
+									<div class="row-fluid">
+										<div class="span12 info-titles">
+											Last recycled on:<br><?php echo date("F j, Y",strtotime($lastActive)); ?>
+										</div>
+									</div>
+									<hr class="hr-infotable">
+									<div class="row-fluid ">
+										<div class="span12">
+										
+											<?php 
+											if($website != NULL)
+											{?>
+												<a target="_blank" href="<?php echo $website;?>" ><img class="img-social" src="<?php echo $this->baseUrl("/images/icons/a18.png"); ?>"></a>
+											<?php 
+											}?>
+											
+											<?php 
+											if($fb != NULL)
+											{?>
+												<a target="_blank" href="<?php echo $fb;?>" ><img class="img-social" src="<?php echo $this->baseUrl("/images/icons/a11.png"); ?>"></a>
+											<?php 
+											}?>
+											
+											<?php 
+											if($tw != NULL)
+											{?>
+												<a target="_blank" href="<?php echo $tw;?>" ><img class="img-social" src="<?php echo $this->baseUrl("/images/icons/a17.png"); ?>"></a>
+											<?php 
+											}?>
+										
+											<!-- <a target="_blank" href="<?php echo $website;?>" ><i class="icon-globe icon-white"></i></a> 
+											<a target="_blank" href="<?php echo $website;?>" ><img class="" src="<?php echo $this->baseUrl("/images/icons/a07.png"); ?>"></a> -->
+										</div>
+									</div>
+									<hr class="hr-infotable">
+									<div class="row-fluid">
+										<div class="span12 ">
+											<span class="info-titles">Other users:</span>
+											
+											<?php $counter = 0; 
+											$mostPoints = 0;
+											?>
+											<?php  foreach ($accountsFriends as $account) { ?>
+											<?php //if ($counter==0){  $mostPoints = $account->quantity; }?>
+												<?php if(($counter % 5)==0)
+													{ ?>
+														<div class="row-fluid custom-margin-padding-top-bottom">
+													<?php 
+													}
+													$counter++; ?>
+												<div class="span2">
+													  <a class="thumbnail" title="<?php echo $account->username; ?>" href="<?php echo $this->baseUrl('account/profile/').'?user='.$account->username;?>">
+													    <span class="right visible-phone"><?php echo $account->username; ?></span>
+													    
+							  						    <img class="media-object" src="<?php echo $this->controller->thumbimagesfb($account->avatar,$this->baseUrl()); ?>">
+							  						    <!-- <img class="media-object" src="<?php //echo $this->baseUrl($imgPrefix."thumb-".$account->avatar); ?>"> -->
+							  						    
+													  </a>
+													<?php //if ($counter==0) { echo '<span class="left label label-info newMember">New!</span>'; }
+													//elseif ($account->quantity>0.8*$mostPoints) {  echo '<span class="left label label-success newMember"><i class="icon-leaf icon-white"></i></span>';}?>
+												</div>
+											 <?php
+											 if(($counter >= 5) && ($counter % 5)==0)
+											 {?>
+											 	
+											 	</div>
+											 <?php }
+											 
+											} 
+											if ($counter % 5 == 1)
+											{?>
+											</div>
+											<?php 	
+											}?>
+												
+											
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							
+							<div class="row-fluid">
+								<div class="span12 cubicles rounded-bottomright">
+									<!-- <a href="<?php // echo $this->baseUrl('account/badges'); ?>" title='Badges' class="btn btn-glor info-titles">Badges:</a> -->
+									<span class="info-titles">Badges won :</span>
+									<br>
+								
+								<?php
+									$counter = 0; 		
+									foreach ($userbadges as $badge) 
+									{?>
+										<img class="badges" title="<?php echo $badge->title; ?>" src="<?php echo $this->baseUrl($badgesPrefix.$badge->path); ?>"></img>
+										<?php
+										$counter++;
+									}
+									
+									if( $counter == 0 )
+									{?>
+										<span class="text-primary info-text">No badges yet</span>
+									<?php }
+									?>
+									<br>
+									<a class="btn btn-glor2 btn-small" data-toggle="modal" data-target="#ModalBadges"><small>see all badges</small></a>
+								</div>
+							</div>
+		
+						</article>
+
+					</div>
+					
+				</section><!-- container : ends -->
+			</div><!-- row-fuild : ends -->
+		</section> <!-- container-fluid : ends-->
+	</div> <!-- projects : ends -->
+
+
+	
+<script>
+<?php 
+
+	$count=1;
+	$lines = "[";
+	foreach ($this->activity as $act) {
+		echo "var line".$count."=".str_replace('"', "", $act).";";
+		//echo "<br>";
+		$lines.= " line".$count.",";
+		$count++;
+	}
+	$lines = rtrim($lines, ",");
+	$lines.="]";
+	
+
+	$usernames = "[";
+	foreach ($usernamesTemp as $usr) {
+		if($usr === $activeUser)
+		{
+			$usernames.='"'.$usr.'",';
+		}
+	}
+	$usernames = rtrim($usernames, ",");
+	$usernames.="]"; 
+
+	$ticks = "[";
+	$i = 1;
+	foreach ($this->dates as $date){
+		$ticks.='['.$i.',"'.date("d-M", strtotime($date)).'"],';
+		$i++;
+	}
+	$ticks = rtrim($ticks,",");
+	$ticks.="]";
+?>
+
+var labels = <?php echo $usernames; ?>;
+var ticks = <?php echo $ticks; ?>; 
+var plot1 = $.jqplot('chartdiv', <?php echo $lines ?>, {
+	  animate: true,
+      // Will animate plot on calls to plot1.replot({resetAxes:true})
+      animateReplot: false, 
+      seriesColors:<?php echo json_encode($seriesColor); ?>,
+   	 seriesDefaults: { 
+     // showMarker:false,
+     // pointLabels: {show:false},
+      rendererOptions: {smooth: true} 
+    },
+    /*legend: {
+        show: false,
+        renderer: $.jqplot.EnhancedLegendRenderer,
+        placement: "insideGrid",
+        labels: labels,
+        location: "ne",
+        rowSpacing: "1px",
+        seriesToggle : 'normal',
+        showSwatches : true,
+        showLabels: false
+    },*/
+    /*highlighter: {
+        show: true,
+        //sizeAdjust: 7.5,
+        bringSeriesToFront: false
+    },*/	
+    /*grid: {
+        drawGridLines: true},*/
+    axes: {
+        xaxis: {
+        	labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
+        	tickRenderer: $.jqplot.CanvasAxisTickRenderer,
+            pad: 1,
+            tickOptions: {
+                showGridline: true,
+                angle: -30
+            },
+            ticks: ticks
+        },
+        yaxis: {
+        	labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
+            min: 0,
+            //max: 100,
+            //label: 'Points',
+            tickOptions: {
+              showGridline: true//,
+            //  suffix: '%'
+            }
+        }
+    }
+	});
+
+</script>

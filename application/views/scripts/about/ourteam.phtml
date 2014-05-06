@@ -1,0 +1,78 @@
+<?php $team = $this->team; ?>
+
+
+<div id="team" class="page">
+	<div class="row">
+		<article class="span1 offset1">
+			<a class="tp-leftarrow large" href="<?php echo $this->url(array('controller'=>'index', 'action'=>'index' ), null, TRUE); ?>"><div class="tp-leftarrow large"></div></a>
+		</article>
+	</div>
+	<section class="container-fluid">
+		<div class="row-fluid">
+			<section class="container">
+				
+				<div class="row">
+					<article class="span12">
+						<h1 class="main-heading">Our Team</h1>
+						<div class="promotional add-top">Sociallgreen is a Green tech Startup from Thessaloniki, Northern Greece. The team tries to change the way people recycle, exploiting modern technologies and concepts. At the same time Sociallgreen equips companies with absolute CSR channel, concerning recycling actions.
+							</div>
+					</article><!-- span12 : ends -->
+				</div><!-- row : ends -->
+				
+				<div class="row">
+					<article class="span8 offset2" >
+						<!-- <h1 style="margin-left:7%;">The team</h1>
+						<p style="margin-left:7%;margin-right:7%;margin-bottom:7%;">"Social Green is a Green tech Startup from Thessaloniki, Northern Greece. The team tries to change the way people recycle, exploiting modern technologies and concepts. At the same time Social-Green equips companies with absolute CSR channel, concerning recycling actions."</p>
+						  
+	 					<img class="teamTextImage" src='<?php // echo $this->baseUrl("images/teamPhotos/TeamNew.png"); ?>'>
+	 					-->
+					</article>	
+				</div>
+				
+				<?php
+				$counter = 0;
+				foreach ($team as $member)
+				{
+					if ($counter==0 || $counter==4)
+					{ ?>
+						<div class="row team-wrap add-top">
+				 	<?php
+					}
+					?>
+					<article class="span3 team-block">
+						<img alt="<?php echo $member[0]; ?>" title="<?php echo $member[0]; ?>"  src="<?php echo $this->baseUrl("images/teamPhotos/photos/mikres/".$member[2]); ?>"/>
+				 		<h4><?php echo $member[0]; ?></h4>
+						<h5><?php echo $member[1]; ?></h5>
+				 		<nav class="pad-top-half add-top-half pad-bottom add-bottom-half">
+														
+							<a href="<?= $member[4] ?>" target="_blank"><img src="<?php echo $this->baseUrl("images/icons/t03.png"); ?>"/></a>
+					 		
+					 		<a href="<?= $member[6] ?>" target="_blank"><img src="
+					 		<?php 
+					 		if  ($member[5]=="aboutme")
+					 		{ 
+					 			echo $this->baseUrl("images/icons/me30x30.png");
+					 		}
+					 		elseif ($member[5]=="twitter")
+							{
+					 			echo $this->baseUrl("images/icons/t01.png");
+					 		} elseif($member[5]=="mail") {
+					 			echo $this->baseUrl("images/fairhead-icons/fc-webicon-mail.png");
+				 		} ?>"/></a>
+							
+							
+						</nav>
+					</article>
+					<?php 
+					if ($counter==3 || $counter==7)
+					{
+						echo "</div>"; 
+					}
+					
+					$counter++;
+				} ?>
+		
+			</section><!-- container : ends -->
+		</div><!-- row-fuild : ends -->
+	</section> <!-- container-fluid : ends-->
+</div> <!-- team : ends -->

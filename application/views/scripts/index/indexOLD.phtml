@@ -1,0 +1,72 @@
+<!-- Joyride code
+<br> 
+<ol class='hidden' id="chooseID">
+  <li data-id="step1" data-button="Let's Start!">What's this?! &nbsp;</li>
+  <li data-id="step2" data-button="Go on">Whats next? &nbsp;</li>
+  <li data-id="step3" data-button="Final Stage">So what?! &nbsp;</li>
+  <li data-id="step4" data-button="Watch the demo!">Thats great isn't it?! &nbsp;</li>
+  <li data-id="step5" data-button="Welcome! :)" data-options="tipLocation:bottom;tipAnimation:fade">Enjoy! &nbsp;</li>
+</ol>
+ -->
+ 
+ <!-- Main Content -->
+ <?php 
+ $registered = Zend_Controller_Front::getInstance()->getRequest()->getParam('register');// $this->_request->getParam('register');
+    	if ($registered == "true")
+    	{
+    		//$this->_helper->flashMessenger->addMessage("You have successfully registered at Social Green Project!");
+    		//$this->messages =$aMessages = $this->_helper->FlashMessenger->getMessages();
+    		echo "<div class='seven columns'>";
+    		echo '<div class="alert-box">You have successfully registered at Social Green Project!<br>
+  					Check your inbox in order to verify your account!<a href="" class="close">&times;</a></div>';
+    		echo "</div>";
+    	}
+ 
+ ?>
+<?php if (count($this->messages) > 0) {
+			echo "<div class='seven columns'>";
+			echo "<div class='alert-box'>". $this->messages[0].'<a href="" class="close">&times;</a></div>';
+			echo "</div>";
+}?>
+
+
+<div class="row">
+	<div class="twelve columns">
+	<div id="description">
+		<div class="row">
+	  		<div id="MainTitles" class="four columns MainTitles" >
+	  			Web Platform
+	  		</div>
+	 	</div>
+ 	
+	 	<div class='row'>
+	  		<div  class="twelve columns">
+	  			<img style="width: 100%;" src="<?php echo $this->baseUrl("images/social-grid.png")?>"/>
+	  		</div>
+		</div>
+		
+		<div class="row">
+			<div class="four columns"></div>
+			<div class="four columns MainTitles">
+	  			Smart Bins
+	  		</div>
+	  	</div>
+	</div> 
+	<!-- End of div#description -->
+	</div>
+</div>  
+ <!-- End Main Content -->
+
+<div style="padding-top:20px" class="row">
+	
+	<p class="MainTitles">Alex goes Social Green</p>
+    <div class="seven columns centered">
+		<iframe src="http://player.vimeo.com/video/55985914" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+	</div>
+</div>
+
+<div class="row">
+	<div class="twelve columns">
+		<h4 style="color:#911762;">Social Green Project wins.. <img src="images/ennovation.png" /></h4>
+	</div>
+</div>

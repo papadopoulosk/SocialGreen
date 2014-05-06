@@ -1,0 +1,91 @@
+<?php /*
+<form id="register" action="<?= $this->baseUrl($this->element->getAction()); ?>" method="<?= $this->element->getMethod(); ?>">
+<p>
+Type in your e-mail address to stay connected!</p>
+<p>
+<?= $this->element->email; ?>
+</p>
+<p>Retype the captcha word!!</p>
+<p><?= $this->element->captcha; ?></p>
+
+<p>
+<?= $this->element->submit; ?>
+</p>
+</form>
+*/ ?>
+
+
+<?php 
+$url = $this->url(array('controller'=>'account', 'action'=>'register' ), null, TRUE);
+if($this->element->getAction() == $url)
+{?>
+	<form class="form-horizontal" id="register" action="<?= $this->element->getAction(); ?>" method="<?= $this->element->getMethod(); ?>">
+		<div class="control-group">
+			<?= $this->element->username; ?>
+		</div>
+		<div class="control-group">
+			<?= $this->element->email; ?>
+		</div>
+		<div class="control-group">
+			<?= $this->element->type; ?>
+		</div>
+		<div class="control-group">
+			<?= $this->element->pswd; ?>
+		</div>
+		<div class="control-group">
+			<?= $this->element->pswd2; ?>
+		</div>
+		<div class="control-group">
+			<?= $this->element->captcha; ?>
+		</div>
+		
+		<div class="control-group">
+			<?= $this->element->submit; ?>
+		</div>
+		<p>* fields are required</p>
+	</form>
+
+<?php 	
+}	
+else
+{?>
+	<form class="form-horizontal" id="register" action="<?= $this->element->getAction(); ?>" method="<?= $this->element->getMethod(); ?>">
+		<div class="control-group">
+			<?= $this->element->username; ?>
+		</div>
+		<div class="control-group">
+			<?= $this->element->email; ?>
+		</div>
+		<div class="control-group">
+			<?= $this->element->type; ?>
+		</div>
+		<div class="control-group">
+			<?= $this->element->pswd; ?>
+		</div>
+		<div class="control-group">
+			<?= $this->element->pswd2; ?>
+		</div>
+		<div class="control-group">
+			<?= $this->element->url; ?>
+		</div>
+		<div class="control-group">
+			<?= $this->element->fb; ?>
+		</div>
+		<div class="control-group">
+			<?= $this->element->tw; ?>
+		</div>
+		<div class="control-group">
+			<?= $this->element->description; ?>
+		</div>
+		
+		
+		<div class="control-group">
+			<?= $this->element->submit; ?>
+		</div>
+		<p>* fields are required</p>
+	</form>
+
+
+<?php 	
+}
+?>

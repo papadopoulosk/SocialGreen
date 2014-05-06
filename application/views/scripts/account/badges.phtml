@@ -1,0 +1,134 @@
+<?php  $badges = $this->badges; ?>
+<?php $badgesPrefix = $this->badgesPrefix; ?>
+
+<?php /*<div class="row-fluid userContent">
+	<div class="span12">
+	<h2>Badges of Sociallgreen 1</h2>
+	
+	<?php 
+		$counter = 1; 
+				
+		foreach ($badges as $badge) 
+		{ 
+			if (($counter % 2) == 1)
+			{ ?>
+				<!-- Arxi siras -->
+				<hr>
+				<div class="row-fluid">
+				<div class="span6">
+				
+				<div class="row-fluid">
+					<div class="span4 text-center">
+						<img class="badges" src="<?php echo $this->baseUrl($badgesPrefix.$badge->path); ?>">
+						<h3><?php echo $badge->title; ?></h3>
+					</div>
+					<div class="span8">
+						<p><?php echo $badge->description; ?></p>
+					</div>
+				</div>
+				</div>
+				
+			<?php
+			}
+			else
+			{ ?>
+				
+				<div class="span6">
+				<div class="row-fluid">
+					<div class="span4 text-center">
+						<img class="badges" src="<?php echo $this->baseUrl($badgesPrefix.$badge->path); ?>">
+						<h3><?php echo $badge->title; ?></h3>
+					</div>
+					<div class="span8">
+						<p><?php echo $badge->description; ?></p>
+					</div>
+				</div>
+				</div>
+				</div>
+			<?php
+			} 
+			$counter++; 
+		}
+		if (($counter % 2) == 1)
+		{
+			echo "</div>";
+		}
+		?>	
+			
+	</div>
+</div> */ ?>
+<header class="desktop-header navbar-fixed-top visible-desktop visible-tablet">
+		<ul class="links desktop-nav span10">
+			
+		</ul>
+		<img alt="Sociallgreen" title="Sociallgreen" id="logo" class="pull-right span2" src="<?php echo $this->baseUrl("images/logo.png"); ?>"/>
+</header>
+
+<div id="projects" class="page">
+		<section class="container-fluid">
+			<div class="row-fluid">
+				<section class="container">
+					<div class="row-fluid keno2">
+						<article class="span12">
+						<h1 class="main-heading">Sample Badges</h1>
+						
+						<?php 
+		$counter = 1; 
+				
+		foreach ($badges as $badge) 
+		{ 
+			if (($counter % 2) == 1)
+			{ ?>
+				<!-- Arxi siras -->
+				<hr>
+				<div class="row-fluid">
+				<div class="span6">
+				
+				<div class="row-fluid">
+					<div class="span4 text-center">
+						<img class="badges2" src="<?php echo $this->baseUrl($badgesPrefix.$badge->path); ?>">
+					</div>
+					<div class="span8">
+						<h3 class="text-badges"><?php echo $badge->title; ?></h3>
+						<p><?php echo $badge->description; ?></p>
+					</div>
+				</div>
+				</div>
+				
+			<?php
+			}
+			else
+			{ ?>
+				<div class="span6">
+				<div class="row-fluid">
+					<div class="span4 text-center">
+						<img class="badges2" src="<?php echo $this->baseUrl($badgesPrefix.$badge->path); ?>">
+					</div>
+					<div class="span8">
+						<h3 class="text-badges"><?php echo $badge->title; ?></h3>
+						<p><?php echo $badge->description; ?></p>
+					</div>
+				</div>
+				</div>
+				</div>
+			<?php
+			} 
+			$counter++; 
+		}
+		if (($counter % 2) == 1)
+		{
+			echo "</div>";
+		}
+		?>	
+						</article>
+						
+						
+						<!-- span12 : ends -->
+					</div><!-- row : ends -->
+					
+					
+			</section>
+		</div>
+	</section>
+</div>	
+		

@@ -1,0 +1,17 @@
+<?php 
+	$userinfo = $this->userinfo;
+	$errors = $this->errors;
+	
+	if($errors == NULL)
+	{
+		header("Content-type: text/xml;charset=utf-8");
+		echo '<USER>OK</USER>';
+	}
+	else
+	{
+		header("Content-type: text/xml;charset=utf-8");
+		echo '<error>
+			'.$errors.'
+		</error>';
+	}
+?>

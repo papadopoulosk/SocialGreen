@@ -1,0 +1,9 @@
+<div class="span5 offset2 hero-unit">
+<?php echo $this->form; ?>
+<table class="table">
+<tr><th>Record Id</th><th>User Id</th><th>Quantity</th><th>Date</th></tr>
+<?php foreach ($this->results as $item){
+	echo "<tr><td>id:".$item->id." </td><td>id:".$item->userid." </td><td> quantity:".$item->quantity." </td><td> Date:".$item->date."</td></tr>"; 
+} ?>
+</table>
+</div>

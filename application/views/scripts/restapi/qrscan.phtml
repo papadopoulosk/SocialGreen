@@ -1,0 +1,33 @@
+<?php 
+	$userinfo = $this->userinfo;
+	$imgPrefix = $this->imgPrefix;
+	$badgesPrefix = $this->badgesPrefix;
+	$errors = $this->errors;
+	
+	if($errors == NULL)
+	{
+		header("Content-type: text/xml;charset=utf-8");
+		echo '<USER>
+				<fbid>'.$userinfo->fbid.'</fbid>
+			<username>'.$userinfo->username.'</username>
+			<email>'.$userinfo->email.'</email>
+			<fullname>'.$userinfo->fullname.'</fullname>
+			<avatar>'.$this->baseUrl($imgPrefix.$userinfo->avatar).'</avatar>
+			<thumb>'.$this->baseUrl($imgPrefix."thumb-".$userinfo->avatar).'</thumb>
+			<description>'.$userinfo->description.'</description>
+			<leaves>'.$userinfo->points.'</leaves>
+	    	<glass>'.$userinfo->glass.'</glass>
+			<plastic>'.$userinfo->plastic.'</plastic>
+			<aluminium>'.$userinfo->aluminium.'</aluminium>
+			<lastActive>'.$userinfo->date.'</lastActive>
+			<website>'.$userinfo->url.'</website>
+		</USER>';
+	}
+	else
+	{
+		header("Content-type: text/xml;charset=utf-8");
+		echo '<error>
+			'.$errors.'
+		</error>';
+	}
+?>

@@ -1,0 +1,415 @@
+<?php 
+$Access = array();
+$Access = $this->Access($this);
+$homelink = $Access['homelink'];
+try {
+	if($Access['acl'] == "denied")
+	{
+		header("Location: ".$homelink."");
+	}else
+	{
+			//echo "Access allowed";
+	}
+} catch (Exception $e) {
+	//echo $e->getMessage();
+}
+?>
+<html xmlns:fb="http://www.facebook.com/2008/fbml"
+	xmlns:og="http://ogp.me/ns#" xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en el" lang="en el" dir="ltr">
+<head>
+	<meta charset="utf-8" />
+	  		<?php echo $this->headTitle($this->title); ?>
+	        <meta name="viewport"
+		content="width=device-width, initial-scale=1.0">
+		<link rel="icon" 
+	      type="image/png" 
+	      href="<?php echo $this->baseUrl('/favicon.ico');?> ">
+	      
+	<meta name="description" content="Sociallgreen official website! Did you know that recycling got social?">
+    <meta name="author" content="Sociallgreen team">
+	
+	<!-- Google plus Snippet -->
+	<!-- Update your html tag to include the itemscope and itemtype attributes. -->
+	<html itemscope itemtype="http://schema.org/Article">
+	<!-- Add the following three tags inside head. -->
+	<meta itemprop="name" content="Social Green">
+	<meta itemprop="description" content="Get the quiz!">
+	<meta itemprop="image"
+		content="http://socialgreenproject.com/images/social.png">
+	<!-- End Google plus Snippet -->
+	
+	<!-- Facebook open graph meta tags -->
+	<meta property="og:site_name" content="Sociallgreen" />
+	<meta property="og:title" content="Sociallgreen" />
+	<meta property="og:type" content="website" />
+	<meta property="og:image"
+		content="http://www.sociallgreen.com/images/200x200.png" />
+	<meta property="og:description" content="Are you ready to GameOn ?" />
+	<meta property="og:url"
+		content="http://www.sociallgreen.com" />
+	<meta property="fb:app_id" content="333359660120082" />
+
+<!-- <meta property="og:title" content="Facebook Open Graph META Tags"/>
+		<meta property="og:image" content="http://davidwalsh.name/wp-content/themes/klass/img/facebooklogo.png"/>
+		<meta property="og:site_name" content="David Walsh Blog"/>
+		<meta property="og:description" content="Facebook's Open Graph protocol allows for web developers to turn their websites into Facebook " /> -->
+
+<!-- End Facebook open graph meta tags -->
+
+		<script	src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<!-- 
+		<link href='http://fonts.googleapis.com/css?family=Chewy' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Merienda+One' rel='stylesheet' type='text/css'>  -->
+    	
+    	
+    	<!-- Bootstrap -->
+    	<link href="<?php echo $this->baseUrl("bootstrap/css/bootstrap.css"); ?>" rel="stylesheet">
+	    <link href="<?php echo $this->baseUrl("bootstrap/css/bootstrap-responsive.css"); ?>" rel="stylesheet">
+	    <link href="<?php echo $this->baseUrl("bootstrap/css/extension.css"); ?>" rel="stylesheet">
+	    <link href="<?php echo $this->baseUrl("bootstrap/css/typography.css"); ?>" rel="stylesheet">
+	    
+	    <!-- Le styles -->
+		<link rel="stylesheet" href="<?php echo $this->baseUrl("css/prettyPhoto.css"); ?>">
+		<link rel="stylesheet" href="<?php echo $this->baseUrl("css/pricing-table.css"); ?>">
+	    <link rel="stylesheet" href="<?php echo $this->baseUrl("css/isotope.css"); ?>">
+	    <link rel="stylesheet" href="<?php echo $this->baseUrl("css/responsive-nav.css"); ?>">		
+		<link rel="stylesheet" href="<?php echo $this->baseUrl("css/style.css"); ?>">
+	    <!-- REVOLUTION BANNER CSS SETTINGS -->
+	    <link rel="stylesheet" href="<?php echo $this->baseUrl("rs-plugin/css/fullwidth.css"); ?>" media="screen" />
+		<link rel="stylesheet" href="<?php echo $this->baseUrl("rs-plugin/css/settings.css"); ?>" media="screen" />
+    	
+    	
+    	<!-- jPlot Pluggin - Charts -->
+    	<?php $this->headLink()->appendStylesheet($this->baseUrl('jqplot/jquery.jqplot.min.css')); ?>
+    	<script	src="<?php echo $this->baseUrl("jqplot/jquery.jqplot.min.js"); ?>"></script>
+		<script	src="<?php echo $this->baseUrl("jqplot/jqplot.canvasTextRenderer.min.js"); ?>"></script>
+		<script	src="<?php echo $this->baseUrl("jqplot/jqplot.canvasAxisLabelRenderer.min.js"); ?>"></script>
+		<script	src="<?php echo $this->baseUrl("jqplot/jqplot.enhancedLegendRenderer.min.js"); ?>"></script>
+		
+		<script	src="<?php echo $this->baseUrl("jqplot/jqplot.logAxisRenderer.min.js"); ?>"></script>
+		<script	src="<?php echo $this->baseUrl("jqplot/jqplot.canvasAxisTickRenderer.min.js"); ?>"></script>
+		<script	src="<?php echo $this->baseUrl("jqplot/jqplot.dateAxisRenderer.min.js"); ?>"></script>
+		<script	src="<?php echo $this->baseUrl("jqplot/jqplot.categoryAxisRenderer.min.js"); ?>"></script>
+		<script	src="<?php echo $this->baseUrl("jqplot/jqplot.barRenderer.min.js"); ?>"></script>
+		<script src="<?php echo $this->baseUrl("jqplot/jqplot.highlighter.min.js"); ?>"></script>
+		<script src="<?php echo $this->baseUrl("jqplot/jqplot.cursor.min.js"); ?>"></script>
+		<script src="<?php echo $this->baseUrl("jqplot/jqplot.dateAxisRenderer.min.js"); ?>"></script>
+		<!-- <script type="text/javascript"	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js"></script>
+		<link rel="stylesheet" type="text/css"	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/themes/smoothness/jquery-ui.css" /> -->
+		
+    	<?php echo $this->headLink(); ?>
+    	
+    	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+    	
+    </head>
+<body >
+
+<!-- Navbar user (navbar for index is in the view of index)
+    ================================================== -->
+<?php  
+    $request = Zend_Controller_Front::getInstance()->getRequest();
+	$controller = $request->getControllerName();
+	$action = $request->getActionName();
+	$auth = Zend_Auth::getInstance();
+	
+	/*If the user has already loged in sho the proper navbar */
+	if ($auth->hasIdentity())
+	{?>
+			<header class="desktop-header navbar-fixed-top ">
+			<div class="container">
+			<img alt="Sociallgreen" title="Sociallgreen" id="logo" class="pull-left span2" src="<?php echo $this->baseUrl("images/logo.png"); ?>"/>
+						<?php echo $this->LoggedInAs(); ?>
+				</div>
+			</header>
+	<?php
+	}
+?>
+	
+	
+<!-- View Content
+    ================================================== -->
+
+	<?php echo $this->layout()->content; ?>
+
+ 
+<!-- End of View Content -->
+
+<!-- Footer 
+    ================================================== -->
+	<footer id="mast-footer">
+		<section class="container-fluid">
+			<div class="row-fluid">
+				<section class="container">
+					<?php /*<div class="row">
+						<article class="span2 offset2" >
+							<h3 class="title">About</h3>
+            				<nav class="navigation">
+								<a href="">Company Overview</a><br>
+								<a href="<?php echo $this->url(array('controller'=>'about', 'action'=>'ourteam' ), null, TRUE); ?>">Team</a>
+							</nav>
+						</article>
+						
+						<article class="span2 offset1">
+							<h3 class="title">Jobs</h3>
+            				<nav class="navigation">
+								<a href="">Wanna be one of us?</a>
+							</nav>
+						</article>
+						
+						<article class="span2 offset1">
+							<h3 class="title">Businesses</h3>
+            				<nav class="navigation">
+								<a href="<?php echo $this->url(array('controller'=>'index', 'action'=>'index' ), null, TRUE); ?>/#areYou">Are you a business?</a>
+							</nav>
+						</article>
+					</div>
+					*/ ?>
+					<div class="row">
+						<article class="span12">
+							<div id="foot-logo">
+							<p >&copy; Copyright 2013 Sociallgreen<br>
+      						<a href="mailto:info@sociallgreen.com">info@sociallgreen.com</a></p>
+      						</div>
+						</article>
+					</div>
+				</section>
+			</div>
+		</section>
+	</footer>
+<!-- End of Footer -->
+
+
+    
+   <!-- Contact Form
+<div id="contactModal" class="modal hide fade"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+    <h3 id="myModalLabel" class="hidden-phone">Contact Form</h3>
+  </div>
+  <div class="modal-body">
+    <?php //echo $this->action("submit-contact", "index");// contactForm; ?>
+  </div>
+</div>  -->
+
+
+<!-- BootStrap & Jquery Script 
+     ================================================== -->
+<!-- JS
+	================================================== -->
+	<script src="<?php echo $this->baseUrl("javascripts/jquery-1.7.2.min.js"); ?>"></script>
+	<script src="<?php echo $this->baseUrl("bootstrap/js/bootstrap-transition.js"); ?>"></script>
+	<script src="<?php echo $this->baseUrl("bootstrap/js/bootstrap-alert.js"); ?>"></script>
+	<script src="<?php echo $this->baseUrl("bootstrap/js/bootstrap-modal.js"); ?>"></script>
+    <script src="<?php echo $this->baseUrl("bootstrap/js/bootstrap-dropdown.js"); ?>"></script>
+    <script src="<?php echo $this->baseUrl("bootstrap/js/bootstrap-scrollspy.js"); ?>"></script>
+    <script src="<?php echo $this->baseUrl("bootstrap/js/bootstrap-tab.js"); ?>"></script>
+    <script src="<?php echo $this->baseUrl("bootstrap/js/bootstrap-tooltip.js"); ?>"></script>
+    <script src="<?php echo $this->baseUrl("bootstrap/js/bootstrap-popover.js"); ?>"></script>
+    <script src="<?php echo $this->baseUrl("bootstrap/js/bootstrap-button.js"); ?>"></script>
+    <script src="<?php echo $this->baseUrl("bootstrap/js/bootstrap-collapse.js"); ?>"></script>
+    <script src="<?php echo $this->baseUrl("bootstrap/js/bootstrap-carousel.js"); ?>"></script>
+    <script src="<?php echo $this->baseUrl("bootstrap/js/bootstrap-typeahead.js"); ?>"></script>
+    <script src="<?php echo $this->baseUrl("bootstrap/js/bootstrap-affix.js"); ?>"></script>
+    
+    <script src="<?php echo $this->baseUrl("javascripts/jquery.inview.js"); ?>"></script>
+    <script src="<?php echo $this->baseUrl("javascripts/jquery.localscroll-1.2.7-min.js"); ?>"></script>
+    <script src="<?php echo $this->baseUrl("javascripts/jquery.scrollTo-1.4.2-min.js"); ?>"></script>
+  	<script src="<?php echo $this->baseUrl("javascripts/nbw-parallax.js"); ?>"></script>
+  	<script src="<?php echo $this->baseUrl("javascripts/jquery.prettyPhoto.js"); ?>"></script>
+	<script src="<?php echo $this->baseUrl("javascripts/waypoints.min.js"); ?>"></script>
+    <script src="<?php echo $this->baseUrl("javascripts/jquery.easing.1.3.js"); ?>"></script>
+	<script src="<?php echo $this->baseUrl("javascripts/jquery.isotope.min.js"); ?>"></script>
+	<script src="<?php echo $this->baseUrl("javascripts/fake-element.js"); ?>"></script>
+ 
+    <!-- jQuery KenBurn Slider  -->
+    <script src="<?php echo $this->baseUrl("rs-plugin/js/jquery.themepunch.plugins.min.js"); ?>"></script>
+	<script src="<?php echo $this->baseUrl("rs-plugin/js/jquery.themepunch.revolution.min.js"); ?>"></script>
+    <script src="<?php echo $this->baseUrl("javascripts/form-validation.js"); ?>"></script>
+    <script src="<?php echo $this->baseUrl("javascripts/scroll.js"); ?>"></script>
+    <script src="<?php echo $this->baseUrl("javascripts/jquery.sticky.js"); ?>"></script>
+	
+	
+  	<!-- Mobile Navigation Scroll Setup -->
+	<script type="text/javascript">
+    	function moveTo(contentArea){
+        	var goPosition = $(contentArea).offset().top;
+        	$('html,body').animate({ scrollTop: goPosition}, 'slow');
+        }
+    </script>
+	<!-- Sticky nav -->
+	<script>
+	  $(document).ready(function(){
+	    $(".desktop-header").sticky({topSpacing:0});
+	  });
+	</script> 
+
+
+	<script>
+
+		$(document).ready(function(){
+			//HEADER AND NAV EVENTS
+			$('.main-nav a').click(function(){
+				$('.main-nav a').removeClass('active');
+				$(this).addClass('active');
+			})
+
+			//PORTFOLIO IMAGE HOVER
+			$('.element').mouseenter(function(){
+				$(this).find('img').css('opacity','0.4');
+			})
+
+			$('.element').mouseleave(function(){
+				$('.element').find('img').css('opacity','1');
+			})
+
+			//PORTFOLIO FILTER ON CLICK
+			$('.inner-link').find('a').click(function(){
+				$('.inner-link').find('a').removeClass('.selected');
+				$(this).addClass('.selected');
+			})
+		});
+	</script>
+	
+		
+	<script>
+
+	// Initialize prettyPhoto plugin
+		$(".portfolio a[data-gal^='prettyPhoto']").prettyPhoto({
+			theme:'light_square', 
+			autoplay_slideshow: false, 
+			overlay_gallery: false, 
+			show_title: false
+		});
+			
+	//MASONRY PORTFOLIO INIT:
+	    $(function(){
+	      
+	      var $container = $('#container');
+	
+	      $container.isotope({
+	        itemSelector : '.element',
+	        layoutMode : 'masonry' 
+	      });
+	      
+	      
+	      var $optionSets = $('#options .option-set'),
+	          $optionLinks = $optionSets.find('a');
+	
+	      $optionLinks.click(function(){
+	        var $this = $(this);
+	        // don't proceed if already selected
+	        if ( $this.hasClass('selected') ) {
+	          return false;
+	        }
+	        var $optionSet = $this.parents('.option-set');
+	        $optionSet.find('.selected').removeClass('selected');
+	        $this.addClass('selected');
+	  
+	        // make option object dynamically, i.e. { filter: '.my-filter-class' }
+	        var options = {},
+	            key = $optionSet.attr('data-option-key'),
+	            value = $this.attr('data-option-value');
+	        // parse 'false' as false boolean
+	        value = value === 'false' ? false : value;
+	        options[ key ] = value;
+	        if ( key === 'layoutMode' && typeof changeLayoutMode === 'function' ) {
+	          // changes in layout modes need extra logic
+	          changeLayoutMode( $this, options )
+	        } else {
+	          // creativewise, apply new options
+	          $container.isotope( options );
+	        }
+	        
+	        return false;
+	      });
+	
+	      
+	    });
+  </script>	
+
+  <script type="text/javascript">
+
+		$(document).ready(function() {
+
+		if ($.fn.cssOriginal!=undefined)
+			$.fn.css = $.fn.cssOriginal;
+
+			$('.fullwidthbanner').revolution(
+				{
+					delay:9000,
+					startwidth:960,
+					startheight:500,
+
+					onHoverStop:"on",						// Stop Banner Timet at Hover on Slide on/off
+
+					thumbWidth:100,							// Thumb With and Height and Amount (only if navigation Tyope set to thumb !)
+					thumbHeight:50,
+					thumbAmount:3,
+
+					hideThumbs:0,
+					navigationType:"bullet",					//bullet, thumb, none, both	 (No Shadow in Fullwidth Version !)
+					navigationArrows:"verticalcentered",		//nexttobullets, verticalcentered, none
+					navigationStyle:"round",				//round,square,navbar
+
+					touchenabled:"on",						// Enable Swipe Function : on/off
+
+					navOffsetHorizontal:0,
+					navOffsetVertical:20,
+
+					stopAtSlide:-1,							// Stop Timer if Slide "x" has been Reached. If stopAfterLoops set to 0, then it stops already in the first Loop at slide X which defined. -1 means do not stop at any slide. stopAfterLoops has no sinn in this case.
+					stopAfterLoops:-1,						// Stop Timer if All slides has been played "x" times. IT will stop at THe slide which is defined via stopAtSlide:x, if set to -1 slide never stop automatic
+
+
+
+					fullWidth:"on",
+
+					shadow:0								//0 = no Shadow, 1,2,3 = 3 Different Art of Shadows -  (No Shadow in Fullwidth Version !)
+
+				});
+
+			});
+			</script>
+
+	<script src="<?php echo $this->baseUrl("javascripts/script.js"); ?>" type="text/javascript"></script>	
+
+
+
+ <!-- END BootStrap & Jquery Script 
+     ================================================== -->
+
+<!-- Google Analytics 
+    ================================================== -->
+ <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36877660-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+ 
+ <!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=8838320; 
+var sc_invisible=1; 
+var sc_security="6d51518a"; 
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="hits counter"
+href="http://statcounter.com/free-hit-counter/"
+target="_blank"><img class="statcounter"
+src="http://c.statcounter.com/8838320/0/6d51518a/1/"
+alt="hits counter"></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
+
+</body>
+</html>

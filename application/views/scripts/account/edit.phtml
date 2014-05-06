@@ -1,0 +1,29 @@
+<?php /*
+<div class="row">
+	<div class="span6 offset3">
+	  <?php $this->Errors($this->errors); ?>
+	<h1>Update you profile</h1>
+	<?php echo $this->form; ?>
+    </div>
+</div>
+*/ ?>
+<div id="register" class="page">
+	<!-- <div class="row-fluid">
+		<article class="span1 offset1">
+			<a class="tp-leftarrow large" href="<?php // echo $this->url(array('controller'=>'index', 'action'=>'index' ), null, TRUE); ?>"><div class="tp-leftarrow large"></div></a>
+		</article>
+	</div>
+	-->
+	<section class="container">
+		<div class="row-fluid">
+			<article class="span6 offset3">
+		 		
+		 		<span class="main-heading" style="font-size: 40px;">Edit you profile</span>
+		 		<?php $this->Errors($this->errors); ?>
+		 		<?php echo $this->form->setAction($this->url(array('controller'=>'account', 'action'=>'edit' ), null, TRUE)); ?>
+				
+				
+			</article>
+		</div><!-- row-fuild : ends -->
+	</section> <!-- container-fluid : ends-->
+</div> <!-- team : ends -->

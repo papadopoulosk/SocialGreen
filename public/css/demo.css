@@ -1,0 +1,17 @@
+/* Styleselector */
+#styleselector {background:url(../images/dark.png) repeat; position: fixed; width: 145px; padding: 15px; right: 0; top: 30%; z-index: 999999; border:solid 3px #000; border-top-left-radius:10px; border-bottom-left-radius:10px;}
+#styleselector #colors {list-style: none; margin: 0; font-size: 0;}
+#styleselector #colors li {cursor: pointer; display: inline-block; width: 42px; height: 42px; margin: 0 15px; border-radius:42px;}
+#styleselector #colors #c-red {background-color: #FF2727;}
+#styleselector #colors #c-purple {background-color: #A07BAE;}
+#styleselector #colors #c-green {background-color: #97BF5F;}
+#styleselector #colors #c-slate {background-color: #989898;}
+#styleselector #colors #c-blue {background-color: #5F8BBD;}
+#styleselector #colors #c-orange {background-color: #FE9E36;}
+#styleselector #colors #c-cyan {background-color: #63D0D0;}
+#styleselector #colors #c-magenta {background-color: #CE4480;}
+#styleselector #colors .tick {display: none; height: 42px; background: url('../img/icons/tick.png') no-repeat scroll 50% 50% transparent;}
+#styleselector #colors .color-active .tick {display: block;}
+#styleselector #styleselector-toggle {cursor: pointer; position: absolute; background: url('../img/icons/cog.png') no-repeat scroll 50% 50% #000; width: 38px; height: 38px; left: -38px; top: 17px; border-top-left-radius:10px; border-bottom-left-radius:10px;}
+#styleselector .buy {background-color: #0b0b0b; display: block; border-top: 1px solid #3b3a38; color: #fff; text-transform: uppercase; text-align: center; padding: 5px;}
+#styleselector .buy:hover {opacity: 0.8;}

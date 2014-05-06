@@ -1,0 +1,24 @@
+<div class="span6 offset2">
+<div class="tabbable tabs-left"> <!-- Only required for left/right tabs -->
+  <ul class="nav nav-tabs">
+  <?php foreach ($this->content as $item){
+  	echo '<li ';
+  	if ($item['id']=="tab1"){echo 'class="active"';}
+	echo '><a href="#'.$item['id'].'" data-toggle="tab">'.$item['tabtitle'].'</a></li>';
+  }?>
+  </ul>
+  <div class="tab-content">
+  <?php foreach($this->content as $item){
+  	echo '<div class="termsFrame tab-pane ';
+  	if ($item['id']=="tab1") echo 'active';
+  	echo '" id="'.$item['id'].'">
+      		<h2>'.$item['title'].'</h2>
+  			<p>'.$item['subTitle1'].'</p>
+  			<p>'.$item['text1'].'</p>
+  			<p>'.$item['subTitle2'].'</p>
+			<p>'.$item['text2'].'</p>
+    	</div>';
+  }?>
+  </div>
+</div>
+</div>

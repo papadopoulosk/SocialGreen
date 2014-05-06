@@ -1,0 +1,38 @@
+<?php /*
+<div class='row'>
+	<div class="span6 offset3">
+		<img src='<?php echo $this->baseUrl('images/verified.png') ?>'>
+	</div>
+</div>
+<div class='row'>
+	<div class="span6 offset3">
+		<h1>Your account is now verified!</h1>
+		<p>Welcome back <?php echo $this->user; ?>! You have successfully registered at Sociallgreen!</p>
+		<p>Now we are sure that your e-mail is not fake! Good job!</p>
+    </div>
+</div>
+*/ ?>
+
+
+<div id="register" class="page">
+	<div class="row-fluid">
+		<article class="span1 offset1">
+			<a class="tp-leftarrow large" href="<?php echo $this->url(array('controller'=>'index', 'action'=>'index' ), null, TRUE); ?>"><div class="tp-leftarrow large"></div></a>
+		</article>
+	</div>
+	<section class="container">
+		<div class="row-fluid">
+			<article class="span6 offset2">
+		 		
+		 		<span class="main-heading" style="font-size: 40px;">Your account is now verified!</span>
+		 		
+				<p>Welcome back <?php echo $this->user; ?>! You have successfully registered at Sociallgreen!</p>
+				<p>Now we are sure that your e-mail is not fake! Good job!</p>
+				
+			</article>
+			<article class="span2">
+				<img src='<?php echo $this->baseUrl('images/Badges/badge.png') ?>'>
+			</article><!-- span12 : ends -->
+		</div><!-- row-fuild : ends -->
+	</section> <!-- container-fluid : ends-->
+</div> <!-- team : ends -->

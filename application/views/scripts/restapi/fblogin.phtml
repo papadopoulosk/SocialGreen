@@ -1,0 +1,107 @@
+<?php 
+	$userinfo = $this->userinfo;
+	$userinfo2 = $this->userinfo2;
+	$newuserinfo = $this->newuserinfo;
+	$errors = $this->errors;
+	
+	/*foreach ($userinfo as $account)
+	{
+		if($account->username == $user)
+		{
+			$leaves = $account->leafs;
+			$username = $account->username;
+			$fullname = $account->fullname;
+			//$avatar = $imgPrefix.$account->avatar;
+			$description = $account->description;
+			$glass = $account->glass;
+			$plastic = $account->plastic;
+			$aluminium = $account->aluminium;
+			$lastActive = $account->date;
+			$website = $account->url;
+		}
+	}*/
+	if($errors == NULL)
+	{
+		if($newuserinfo == NULL)
+		{
+			if($userinfo2 == NULL)
+			{
+				header("Content-type: text/xml;charset=utf-8");
+				echo '<USER>
+						<fbid>'.$userinfo->fbid.'</fbid>
+					<username>'.$userinfo->username.'</username>
+					<email>'.$userinfo->email.'</email>
+					<avatar>'.$userinfo->avatar.'</avatar>
+					<leaves>'.$userinfo->points.'</leaves>
+			    	<glass>'.$userinfo->glass.'</glass>
+					<plastic>'.$userinfo->plastic.'</plastic>
+					<aluminium>'.$userinfo->aluminium.'</aluminium>
+					<lastActive>'.$userinfo->date.'</lastActive>
+				</USER>';
+			}
+			else
+			{
+				header("Content-type: text/xml;charset=utf-8");
+				echo '<USER>
+						<fbid>'.$userinfo2->fbid.'</fbid>
+					<username>'.$userinfo2->username.'</username>
+					<email>'.$userinfo2->email.'</email>
+					<avatar>'.$userinfo2->avatar.'</avatar>
+					<leaves>'.$userinfo2->points.'</leaves>
+			    	<glass>0</glass>
+					<plastic>0</plastic>
+					<aluminium>0</aluminium>
+					<lastActive>'.$userinfo2->date.'</lastActive>
+				</USER>';
+			}
+		}
+		else
+		{
+			/* anaferomai etsi $newuserinfo['username'] se kathe stixeio sto array pou eftiaxa ston controler 
+			 * giati etsi ginete ennow otan epistrefei apo erwtima stin vasi einai alliws opws panw */
+			header("Content-type: text/xml;charset=utf-8");
+			echo '<USER>
+					<fbid>'.$newuserinfo["fbid"].'</fbid>
+				<username>'.$newuserinfo["username"].'</username>
+				<email>'.$newuserinfo["email"].'</email>
+				<avatar>'.$newuserinfo["avatar"].'</avatar>
+				<leaves>'.$newuserinfo["points"].'</leaves>
+		    	<glass>'.$newuserinfo["glass"].'</glass>
+				<plastic>'.$newuserinfo["plastic"].'</plastic>
+				<aluminium>'.$newuserinfo["aluminium"].'</aluminium>
+				<lastActive>'.$newuserinfo["date"].'</lastActive>
+			</USER>';
+		}
+	}
+	else
+	{
+		header("Content-type: text/xml;charset=utf-8");
+		echo '<error>
+			'.$errors.'
+		</error>';
+	}
+
+	
+/*
+ * <USER>
+<username>
+</username>
+...
+<badges>
+	<badge>
+		<title>
+		</title>
+		<image>
+		</image>
+	</badge>
+	<badge>
+		<title>
+		</title>
+		<image>
+		</image>
+	</badge>
+</badges>
+</USER>
+ */	
+	
+?>

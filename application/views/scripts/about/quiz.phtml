@@ -1,0 +1,21 @@
+<div class="row-fluid">
+<div id="quiz" class="span8 offset2 hero-unit">
+<?php echo $this->navigation()->breadcrumbs()->render(); ?>
+<?php /*
+$groupid = 1; //Question id to group answers
+foreach ($this->qa as $qa){  
+	 echo $qa[1] ;
+	 $answerid=1; //specific answers id for each question
+	 foreach ($qa[2] as $validAnswer){
+			 $answerid++; ?>
+			<label class="radio">
+		  		<input type="radio" name="optionsRadios<?php echo $groupid; ?>" id="optionsRadios<?php echo $answerid; ?>" value="option<?php echo $answerid;?>">
+		  		<?php echo $validAnswer; ?>	
+			</label><?php 
+	 }
+	 $groupid++; 
+} */
+?>
+<?php echo $this->quizForm;?>
+</div>
+</div>

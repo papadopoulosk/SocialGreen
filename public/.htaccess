@@ -1,0 +1,8 @@
+
+AddType image/svg+xml svg svgz
+AddEncoding gzip svgz
+
+Options +MultiViews 
+AddLanguage el el 
+AddLanguage en en 
+LanguagePriority en el

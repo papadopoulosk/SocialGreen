@@ -1,0 +1,61 @@
+ 
+  <style>
+  #progressbar .ui-progressbar-value {
+    background-color: #ccc;
+  }
+  </style>
+  
+<h2>Green Ladder Game</h2>
+<?php //echo $this->graph; ?>
+
+<?php //echo $this->dailyGraph; ?>
+<div class="row">
+	<div  class="one columns">
+		<table class="one">
+		  <thead>
+		    <tr>
+		      <th>User</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr>
+		      <td>Ihu</td>
+		    </tr>
+		    <tr>
+		      <td>Ihu</td>
+		    </tr>
+		  </tbody>
+		</table>
+	</div>
+	<div  class="eleven columns">
+			<table class="twelve">
+			  <thead>
+			    <tr>
+			      <th>Table Header</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr>
+			      <td><div class="progressbar" value="45" title="User 1: 45"></div></td>
+			    </tr>
+			     <tr>
+			      <td><div class="progressbar" value="56" title="User 2: 56"></div></td>
+			    </tr>
+			  </tbody>
+			</table>
+	</div>
+</div>
+<script>
+  $(function() {
+	 
+
+		$( ".progressbar" ).each(function () {
+		value =  $(this).attr('value');
+		$(this).css({
+	          "background": '#' + Math.floor( Math.random() * 16777215 ).toString( 16 )
+        	}).progressbar({
+		      value: parseInt($(this).attr('value')),
+		    });
+		});
+  })
+  </script>

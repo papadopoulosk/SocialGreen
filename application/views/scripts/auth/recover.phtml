@@ -1,0 +1,36 @@
+<?php /*<div class="row">
+   <div class="span6 offset3">
+   <h5>Forgot your account?</h5>
+      <?php echo $this->form; ?>
+   </div>
+   <!-- <?= $this->Errors($this->errors); ?>-->
+</div>
+*/ ?>
+<div id="recover" class="page">
+	<div class="row-fluid">
+		<article class="span6 offset1">
+			<a class="tp-leftarrow large" href="<?php echo $this->url(array('controller'=>'index', 'action'=>'index' ), null, TRUE); ?>"><div class="tp-leftarrow large"></div></a>
+		</article>
+	</div>
+	<section class="container">
+		<div class="row-fluid">
+			
+					<article class="span6 offset3">
+				 		
+				 		<span class="main-heading" style="font-size: 60px;">Forgot your account?</span>
+				 		
+				 		<?= $this->Errors($this->errors); ?>
+				 		
+						<?php echo $this->form; ?>
+						<!-- <p>- or -<br>
+						<button id="fbc-login-button">Login with Facebook</button>
+						</p>
+						-->
+					</article><!-- span12 : ends -->
+				
+				
+				
+		
+		</div><!-- row-fuild : ends -->
+	</section> <!-- container-fluid : ends-->
+</div> <!-- team : ends -->

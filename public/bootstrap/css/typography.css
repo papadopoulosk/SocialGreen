@@ -1,0 +1,149 @@
+/* -----------------------------------------
+   Font-face:
+----------------------------------------- */
+@font-face{ 
+font-family:"Open_Sans_R";
+src: url('fonts/open_sans/OpenSans-Regular-webfont.eot'); 
+src: 
+url('fonts/open_sans/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'), 
+url('fonts/open_sans/OpenSans-Regular-webfont.woff') format('woff'), 
+url('fonts/open_sans/OpenSans-Regular-webfont.ttf') format('truetype'), 
+url('fonts/open_sans/OpenSans-Regular-webfont.svg#webfont') format('svg'); 
+}
+
+@font-face{ 
+font-family:"Nexa_Light";
+src: url('fonts/nexa_light/nexa_light-webfont.eot'); 
+src: 
+url('fonts/nexa_light/nexa_light-webfont.eot?#iefix') format('embedded-opentype'), 
+url('fonts/nexa_light/nexa_light-webfont.woff') format('woff'), 
+url('fonts/nexa_light/nexa_light-webfont.ttf') format('truetype'), 
+url('fonts/nexa_light/nexa_light-webfont.svg#webfont') format('svg'); 
+}
+
+@font-face{ 
+font-family:"Nexa_Bold";
+src: url('fonts/nexa_light/nexa_bold-webfont.eot'); 
+src: 
+url('fonts/nexa_bold/nexa_bold-webfont.eot?#iefix') format('embedded-opentype'), 
+url('fonts/nexa_bold/nexa_bold-webfont.woff') format('woff'), 
+url('fonts/nexa_bold/nexa_bold-webfont.ttf') format('truetype'), 
+url('fonts/nexa_bold/nexa_bold-webfont.svg#webfont') format('svg'); 
+}
+
+@font-face{ 
+font-family:"Ostrich_Sans_Regular";
+src: url('fonts/ostrich_sans_regular/ostrich_regular-webfont.eot'); 
+src: 
+url('fonts/ostrich_sans_regular/ostrich_regular-webfont.eot?#iefix') format('embedded-opentype'), 
+url('fonts/ostrich_sans_regular/ostrich_regular-webfont.woff') format('woff'), 
+url('fonts/ostrich_sans_regular/ostrich_regular-webfont.ttf') format('truetype'), 
+url('fonts/ostrich_sans_regular/ostrich_regular-webfont.svg#webfont') format('svg'); 
+}
+
+@font-face{ 
+font-family:"Ostrich_Sans_Black";
+src: url('fonts/ostrich_sans_black/ostrich_black-webfont.eot'); 
+src: 
+url('fonts/ostrich_sans_black/ostrich_black-webfont.eot?#iefix') format('embedded-opentype'), 
+url('fonts/ostrich_sans_black/ostrich_black-webfont.woff') format('woff'), 
+url('fonts/ostrich_sans_black/ostrich_black-webfont.ttf') format('truetype'), 
+url('fonts/ostrich_sans_black/ostrich_black-webfont.svg#webfont') format('svg'); 
+}
+
+@font-face{ 
+font-family:"bariol_regular";
+src: url('fonts/bariol_regular/bariol_regular-webfont.eot'); 
+src: 
+url('fonts/bariol_regular/bariol_regular-webfont.eot?#iefix') format('embedded-opentype'), 
+url('fonts/bariol_regular/bariol_regular-webfont.woff') format('woff'), 
+url('fonts/bariol_regular/bariol_regular-webfont.ttf') format('truetype'), 
+url('fonts/bariol_regular/bariol_regular-webfont.svg#webfont') format('svg'); 
+}
+
+@font-face{ 
+font-family:"Droid_Sans_Regular";
+src: url('fonts/droid_sans_regular/droidsans-webfont.eot'); 
+src: 
+url('fonts/droid_sans_regular/droidsans-webfont.eot?#iefix') format('embedded-opentype'), 
+url('fonts/droid_sans_regular/droidsans-webfont.woff') format('woff'), 
+url('fonts/droid_sans_regular/droidsans-webfont.ttf') format('truetype'), 
+url('fonts/droid_sans_regular/droidsans-webfont.svg#webfont') format('svg'); 
+}
+
+@font-face{ 
+font-family:"Droid_Sans_Bold";
+src: url('fonts/droid_sans_bold/droidsans-bold-webfont.eot'); 
+src: 
+url('fonts/droid_sans_bold/droidsans-bold-webfont.eot?#iefix') format('embedded-opentype'), 
+url('fonts/droid_sans_bold/droidsans-bold-webfont.woff') format('woff'), 
+url('fonts/droid_sans_bold/droidsans-bold-webfont.ttf') format('truetype'), 
+url('fonts/droid_sans_bold/droidsans-bold-webfont.svg#webfont') format('svg'); 
+}
+
+@font-face{ 
+font-family:"Source_Sans";
+src: url('fonts/source_sans_pro/sourcesanspro-regular-webfont.eot'); 
+src: 
+url('fonts/source_sans_pro/sourcesanspro-regular-webfont.eot?#iefix') format('embedded-opentype'), 
+url('fonts/source_sans_pro/sourcesanspro-regular-webfont.woff') format('woff'), 
+url('fonts/source_sans_pro/sourcesanspro-regular-webfont.ttf') format('truetype'), 
+url('fonts/source_sans_pro/sourcesanspro-regular-webfont.svg#webfont') format('svg'); 
+}
+
+@font-face{ 
+font-family:"Novecento_Wide";
+src: url('fonts/novecento_wide_medium/synthview_-_novecentowide-medium-webfont.eot'); 
+src: 
+url('fonts/novecento_wide_medium/synthview_-_novecentowide-medium-webfont.eot?#iefix') format('embedded-opentype'), 
+url('fonts/novecento_wide_medium/synthview_-_novecentowide-medium-webfont.woff') format('woff'), 
+url('fonts/novecento_wide_medium/synthview_-_novecentowide-medium-webfont.ttf') format('truetype'), 
+url('fonts/novecento_wide_medium/synthview_-_novecentowide-medium-webfont.svg#webfont') format('svg'); 
+}
+
+@font-face{ 
+font-family:"Ostrich_Sans_Regular";
+src: url('fonts/ostrich_sans_regular/ostrich_regular-webfont.eot'); 
+src: 
+url('fonts/ostrich_sans_regular/ostrich_regular-webfont.eot?#iefix') format('embedded-opentype'), 
+url('fonts/ostrich_sans_regular/ostrich_regular-webfont.woff') format('woff'), 
+url('fonts/ostrich_sans_regular/ostrich_regular-webfont.ttf') format('truetype'), 
+url('fonts/ostrich_sans_regular/ostrich_regular-webfont.svg#webfont') format('svg'); 
+}
+
+@font-face{ 
+font-family:"Ostrich_Sans_Black";
+src: url('fonts/ostrich_sans_black/ostrich_black-webfont.eot'); 
+src: 
+url('fonts/ostrich_sans_black/ostrich_black-webfont.eot?#iefix') format('embedded-opentype'), 
+url('fonts/ostrich_sans_black/ostrich_black-webfont.woff') format('woff'), 
+url('fonts/ostrich_sans_black/ostrich_black-webfont.ttf') format('truetype'), 
+url('fonts/ostrich_sans_black/ostrich_black-webfont.svg#webfont') format('svg'); 
+}
+
+@font-face{ 
+font-family:"sosa";
+src: url('fonts/sosa/sosa.eot'); 
+src: 
+url('fonts/sosa/sosa.eot?#iefix') format('embedded-opentype'), 
+url('fonts/sosa/sosa.woff') format('woff'), 
+url('fonts/sosa/sosa.ttf') format('truetype'), 
+url('fonts/sosa/sosa.svg#webfont') format('svg'); 
+}
+
+.sosa-icon{
+font-family:"sosa";
+	font-style: normal;
+}
+
+@font-face {
+    font-family: 'WebSymbolsRegular';
+    src: url('fonts/websymbols/websymbols-regular-webfont.eot');
+    src: url('fonts/websymbols/websymbols-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/websymbols/websymbols-regular-webfont.woff') format('woff'),
+         url('fonts/websymbols/websymbols-regular-webfont.ttf') format('truetype'),
+         url('fonts/websymbols/websymbols-regular-webfont.svg#WebSymbolsRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+

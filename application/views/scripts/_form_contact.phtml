@@ -1,0 +1,30 @@
+<form id="contactForm" action="<?= $this->element->getAction(); ?>" method="<?= $this->element->getMethod(); ?>">
+	  <fieldset>
+	    <p><?= $this->element->name; ?></p>
+	    <p><?= $this->element->email; ?></p>
+	    <p><?= $this->element->category; ?></p>
+	    <p><?= $this->element->description; ?></p>
+	    <div id="output"></div>
+	  	<p><?= $this->element->submit; ?></p>
+	  </fieldset>
+	</form>
+<?php /*
+<script>
+$(function(){
+	$('#contactForm').submit(function() {
+		var data = $(this).serialize();
+		var url = '<?php echo $this->baseUrl("/about/contact/"); ?>';
+		$.ajax({
+		  type: "POST",
+		  url: url,
+		  data: data,
+		  success: function(resp){
+			$("#output").html(resp);
+		  }
+		});
+		return false;
+	});
+	
+});
+</script>
+*/

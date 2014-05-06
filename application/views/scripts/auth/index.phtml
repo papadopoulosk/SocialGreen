@@ -1,0 +1,46 @@
+<!-- <div class="row">
+		<div class="span6 offset3">
+			<h1>Attention!</h1>
+			<p>At the moment Social Green is under Development! But we will keep you updated with upcoming changes!</p>
+		</div>
+</div>
+<div class="row">
+	
+	<div class="span6 offset3">
+		<?php // echo $this->Errors($this->errors); ?>
+ 		<h1>Login</h1>
+		<?php // echo $this->form->setAction($this->url()); ?>
+		<p>- or -<br>
+		<button id="fbc-login-button">Login with Facebook</button>
+		</p>
+	</div>
+	<div class="span3">
+	</div>
+</div>
+-->
+
+<div id="login" class="page">
+	<div class="row-fluid">
+		<article class="span6 offset1">
+			<a class="tp-leftarrow large" href="<?php echo $this->url(array('controller'=>'index', 'action'=>'index' ), null, TRUE); ?>"><div class="tp-leftarrow large"></div></a>
+		</article>
+	</div>
+	<section class="container">
+		<div class="row-fluid">
+			
+					<article class="span4 offset5">
+				 		
+				 		<h1 class="main-heading">Login</h1>
+				 		
+				 		<?= $this->Errors($this->errors); ?>
+				 		
+						<?php echo $this->form->setAction($this->url()); ?>
+						<!-- <p>- or -<br>
+						<button id="fbc-login-button">Login with Facebook</button>
+						</p>
+						-->
+					</article><!-- span12 : ends -->
+
+		</div><!-- row-fuild : ends -->
+	</section> <!-- container-fluid : ends-->
+</div> <!-- team : ends -->

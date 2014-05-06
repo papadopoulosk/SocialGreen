@@ -1,0 +1,169 @@
+<html>
+    <head>
+    	<meta charset="utf-8" />
+  		<!-- Set the viewport width to device width for mobile -->
+		<meta name="viewport" content="width=device-width" />
+        
+        <?php //echo $this->headTitle(); ?>
+    
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        
+        <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed&subset=latin,greek' rel='stylesheet' type='text/css'>
+        <?php $this->headTitle()->append($this->title); echo $this->headTitle(); ?>
+        
+        <?php  $this->headLink()->appendStylesheet($this->baseUrl('stylesheets/foundation.min.css')); ?>
+  		<?php  $this->headLink()->appendStylesheet($this->baseUrl('stylesheets/app.css')); ?>
+  		<?php  $this->headLink()->appendStylesheet($this->baseUrl('stylesheets/fc-webicons.css')); ?>
+  		<?php  $this->headLink()->appendStylesheet($this->baseUrl('stylesheets/ie.css')); ?>
+  		<?php  $this->headLink()->appendStylesheet($this->baseUrl('stylesheets/responsive-tables.css')); ?>
+  		
+  		<?php  $this->headScript()->appendFile($this->baseUrl('javascripts/modernizr.foundation.js')); ?>
+  		<?php  $this->headScript()->appendFile($this->baseUrl('javascripts/responsive-tables.js')); ?>
+  		
+  		<?php echo $this->headLink()->appendStylesheet($this->baseUrl('css/mainStyle.css')); ?>
+  		
+  		
+  		<!-- Included JS Files (Compressed) -->
+	  	<?php  $this->headScript()->appendFile($this->baseUrl('javascripts/jquery.js')); ?>
+	  	
+	  	<?php  $this->headScript()->appendFile($this->baseUrl('javascripts/foundation.min.js')); ?>
+		<?php  $this->headScript()->appendFile($this->baseUrl('javascripts/jquery.foundation.joyride.js')); ?>
+	  	<!-- Initialize JS Plugins -->
+	  	<?php echo $this->headScript()->appendFile($this->baseUrl('javascripts/app.js')); ?>
+	  	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
+  		<script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+  		<script>
+ 		 	$( document ).tooltip({ position: { my: "center center", at: "center bottom+20" }});
+  		</script>
+    </head>
+    <body>
+    
+
+    
+    
+<!-- Positioning the Top Bar -->
+<div id='nav' class="fixed contain-to-grid">
+	<!-- <nav> goes here -->
+	<nav class="top-bar">
+		<?php /*
+		<ul>
+    		<li class="name"><h1><a href="<?php echo $this->url(array('controller'=>'index'), null, TRUE); ?>"><img id='logo' src='<?php echo $this->baseUrl('images/social.png') ?>'></a></h1></li>
+    		<li class="toggle-topbar"><a href="#"></a></li>
+		</ul>
+  		*/ ?>
+	<a href="<?php echo $this->url(array('controller'=>'index'), null, TRUE); ?>"><img  title="Back to home"  id='logo' src='<?php echo $this->baseUrl('images/white-logo.png') ?>'></a>
+	<section>
+	
+	<ul class="right">
+    	<!-- <li><a href="<?php //echo $this->url(array('controller'=>'account', 'action'=>'register'), null, TRUE); ?>">Register</a></li>-->
+    	<?php echo $this->loggedInAs(); ?>
+	</ul>
+	</section>
+	</nav>
+</div>
+ 
+<!-- Header and Nav -->
+ <?php /* <div class="row">
+	    
+	    
+	 <!-- <div class="nine columns">
+	    <div class='row'>
+	      	<div class='twelve columns'>
+	      		<ul class="nav-bar right">
+	      			<li><a href="<?php echo $this->url(array('controller'=>'index'), null, TRUE); ?>">Home</a></li>
+    				<!-- <li><a href="<?php //echo $this->url(array('controller'=>'account', 'action'=>'register'), null, TRUE); ?>">Register</a></li>-->
+    		<!-- <?php echo $this->loggedInAs(); ?>
+	      		</ul>
+	    	</div>
+	    </div> -->
+	    
+	    
+	    
+	  <?php 
+	    $auth = Zend_Auth::getInstance();
+        if ($auth->hasIdentity()) {
+        	/*?>
+				<div class='row'>
+	    			<div class="three columns offset-by-nine">
+	    				<div class="panel">Logged in as <?php $username = $auth->getIdentity()->username; echo $username; ?>!</div>
+	    			</div>
+	    		</div>        	
+        	<?php 
+        }
+        ?>	    
+</div> */ ?>
+<!-- End Header and Nav -->
+
+
+<!-- Three-up Content Blocks -->
+
+ <div id="mainContent" class="row">
+	<div class="twelve columns">
+		<!-- <h4><?php echo $this->title; ?></h4> -->
+		<?php echo $this->layout()->content; ?>
+	</div>
+
+</div>
+
+<!-- Footer -->
+
+<footer class="row">
+    <div class="twelve columns">
+		<hr />
+      	<div class="row">
+      	<!-- ABOUT -->
+      	<div class="four columns boxer">
+      		<ul class="mylist">
+	        	<li class="FooterTitles">About</li>
+				<li ><a href="<?php echo $this->url(array('controller'=>'about', 'action'=>'ourteam' ), null, TRUE); ?>">Our Team</a></li>
+				<li ><a href="<?php echo $this->url(array('controller'=>'about', 'action'=>'bin'), null, TRUE); ?>">Want a Bin?</a></li>
+				<li ><a href="<?php echo $this->url(array('controller'=>'about', 'action'=>'contact'), null, TRUE); ?>">Contact Us</a></li>
+			</ul>
+        	</div>
+        
+       	<!-- Activities -->
+        <div  class="four columns boxer">
+			<ul class="mylist">
+				<li class="FooterTitles">Activities</li>
+				
+				<li><a href="<?php echo $this->url(array('controller'=>'index'), null, TRUE); ?>">Home</a></li>
+				<li><a href="<?php echo $this->url(array('controller'=>'account', 'action'=>'register'), null, TRUE); ?>">Register</a></li>
+				<li><a href="<?php echo $this->url(array('controller'=>'auth', 'action'=>'index'), null, TRUE); ?>">Login</a></li>
+			</ul>
+        </div>
+        <!-- Find Us -->
+        <div class="four columns boxer">
+        	<ul class="mylist">
+				<li class="FooterTitles ">Find Us</li>
+				
+	          	<li><a title="See our LinkedIn" target="_blank" href="http://www.linkedin.com/company/2937639?trk=tyah"><img  class='social' src="<?php echo $this->baseUrl('images/fairhead-icons/fc-webicon-linkedin-m.png') ?>"></a></li>
+	            <li><a title="Check our facebook" target="_blank" href="https://www.facebook.com/SGreenProject"><img  class='social' src="<?php echo $this->baseUrl('images/fairhead-icons/fc-webicon-facebook-m.png') ?>"></a></li>
+				<li><a title="Follow us on Twitter" target="_blank" href="https://twitter.com/SGreen_Project"><img  class='social' src="<?php echo $this->baseUrl('images/fairhead-icons/fc-webicon-twitter-m.png') ?>"></a></li>
+			</ul>
+        </div>
+   		</div>
+   		
+      	<div class="row">
+      	<div class="twelve columns">
+      		<p class="FooterTitles" style="text-decoration: none;">&copy; Copyright 2013 Social Green</p>
+      	</div>
+      	</div>
+    </div> 
+    
+</footer>
+
+ <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36877660-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>

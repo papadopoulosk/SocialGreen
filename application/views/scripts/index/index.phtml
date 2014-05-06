@@ -1,0 +1,682 @@
+<?php /*
+		//	Retrieving the stored messages is similarly simple:
+		$messages = $this->messages;
+		//This will create an array of messages in your view object which you can then loop over in your view script:
+		if (count($messages)){
+			foreach ($messages as $message) {
+ 				echo '<div id="customalert" class="alert alert-success span3 pull-right hidden-phone"><button type="button" class="close pull-right" data-dismiss="alert">&times;</button>'.$message.'</div>'; 
+ 			}
+ 			echo '	<script>$( document ).ready(function() {
+    					$("div#customalert").delay(2000).animate({top:"70px"},"slow").delay(10000).fadeOut(2000);
+					});</script>';
+ 		}
+*/ ?>
+<?php  $accounts = $this->accounts; ?>
+<?php  $imgPrefix = $this->imgPrefix; ?>
+<?php  $allactivity = $this->results; ?>
+<?php $team = $this->team; ?>
+<?php 
+	$sum=0;
+	foreach ($this->allActivity as $activityTemp){
+	$sum = $sum +  (1*$activityTemp->glass)+(2*$activityTemp->plastic)+(3*$activityTemp->aluminium);
+}?>
+
+<!-- Navbar
+    ================================================== -->
+<ul class="mobile-header visible-phone">	
+		<li>
+				<!-- Start Dropmenu for mobile -->	
+				<select class="dropmenu" name="dropmenu" onChange="moveTo(this.value)">
+					<option value="" selected="selected">Menu</option>
+					<option value="#intro">Map</option>
+				<!--	<option value="#leaderboard">Leaderboard</option>  -->
+					<option value="#howItWorks">How it works</option>
+				<!--	<option value="#downApp">Download App</option>  -->
+					<option value="#areYou">Be a place</option>
+					<option value="#contact">Contact</option> 
+				<!--	<option value="#">Sign In</option>  -->
+				<!--	<option value="#">Sign Up</option>  -->
+				</select>
+				<!-- End Dropmenu for mobile -->
+		</li>
+	</ul>
+	
+		
+	<header class="desktop-header visible-desktop visible-tablet">
+		<ul class="links desktop-nav span10">
+			<li><a id="intro-linker" href="#intro">Map</a></li>
+		<!--	<li><a id="leaderboard-linker" href="#leaderboard">Leaderboard</a></li>  -->
+			<li><a id="howItWorks-linker" href="#howItWorks">How it works</a></li>
+		<!--	<li><a id="downApp-linker" href="#downApp">Download App</a></li> -->
+			<li><a id="areYou-linker" href="#areYou">Be a place</a></li>
+			<li><a id="team-linker" href="#team">Team</a></li>
+			<li><a id="contact-linker" href="#contact">Contact</a></li>
+			<li>
+				<!-- <a  data-toggle="modal" href="#myModal" class="btn btn-success btn-small">Sign In</a> -->
+				<a style="color: #fff;" class="btn btn-glor2 btn-small" data-toggle="modal" data-target="#myModal">Sign In</a>
+			</li>
+			
+			<li>
+				<!-- <a  data-toggle="modal" href="#myModal" class="btn btn-success btn-small">Sign In</a> -->
+			<a style="color: #fff;" class="btn btn-glor2 btn-small" href="<?php echo $this->url(array('controller'=>'account', 'action'=>'register' ), null, TRUE); ?>">Sign Up</a>
+			</li>
+		</ul>
+		<img alt="Sociallgreen" title="Sociallgreen" id="logo" class="pull-right span2" src="<?php echo $this->baseUrl("images/logo.png"); ?>"/>
+	</header>
+
+<!-- End of Navbar -->
+	
+<!-- Modal Sign In -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header lead-background">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove icon-white"></i></button>
+    <!-- <h3 id="myModalLabel">Sign In to Sociallgreen</h3> -->
+    <h6 id="ModalBadgesLabel" class="title-leaderboard"><span >Sign In to Sociallgreen</span></h6>
+  </div>
+  <div class="modal-body">
+    <?php echo $this->Errors($this->errors); ?>
+				 		
+	<?php echo $this->loginform->setAction($this->url(array('controller'=>'auth', 'action'=>'index' ), null, TRUE)); ?>
+  </div>
+  
+</div>
+
+<div id="intro">
+	<div class="fullwidthbanner-container">
+		<div class="fullwidthbanner">
+		
+			<ul>
+				<li  data-slotamount="1" data-masterspeed="300" >
+					<!-- <img alt="" title="" src="http://maps.googleapis.com/maps/api/staticmap?center=leukos+pirgos,thessaloniki,Greece&zoom=13&size=640x500&scale=2&format=png&key=AIzaSyDRid_JJj_wwGWz4Pi4xr17TO40JlkUSGQ&maptype=terrain&markers=icon:http://sociallgreen.com/images/kadakimi.png%7CStratigou+Napoleontos+Zerva+10,Thessaloniki,Greece&sensor=false" />-->
+					<img alt="" title="" src="http://maps.googleapis.com/maps/api/staticmap?center=Leoforos+Megalou+Alexandrou+80,thessaloniki,Greece&zoom=13&size=640x500&scale=2&format=png&key=AIzaSyDRid_JJj_wwGWz4Pi4xr17TO40JlkUSGQ&maptype=terrain&markers=color:blue%7C40.631933,22.935113&sensor=false" />
+					<div class="caption very_big_white_main lfl stl visible-tablet visible-desktop"  
+						 data-x="-201" 
+						 data-y="403"
+						 data-speed="100" 
+						 data-start="1000" 
+						 data-easing="easeOutExpo" >Find a bin next to you
+					</div>
+					<div class="caption big_white_sub lfl stl visible-tablet visible-desktop"  
+						 data-x="-201" 
+						 data-y="490" 
+						 data-speed="100" 
+						 data-start="1000" 
+						 data-easing="easeOutExpo"><span style="line-height: 25px;">Type your current location:</span><br>
+						 <form name="myform" id="locationForm" action="" enctype="multipart/form-data" method="post"> 
+							 <div id="flocal" class="alert alert-error  error">
+                        			Location should not be empty
+                        	</div>
+							<div class="input-prepend">
+	                        	<span class="add-on"><i class="icon-map-marker"></i></span>
+	                        	<input style="height: 30px;" class="span3 offset1" id="location" required   size="16" type="text" name="location" placeholder="e.g. Brooklyn, NY">
+	                        </div>
+	                        <button type="submit" name="submit" id="submit" class="btn btn-glor2">Search</button>
+                    	</form>
+					</div>
+					
+						 <?php
+							//	Retrieving the stored messages is similarly simple:
+							$messages = $this->messages;
+							//This will create an array of messages in your view object which you can then loop over in your view script:
+							if (count($messages)){
+								foreach ($messages as $message) {
+					 				echo '
+ 										<div id="customalert" class="alert caption big_white_sub  lfl stl visible-tablet visible-desktop"  
+							 			data-x="700" 
+							 			data-y="50" 
+							 			data-speed="100" 
+							 			data-start="1000" 
+							 			data-easing="easeOutExpo"><button type="button" class="close" data-dismiss="alert">&times;</button>'.$message.'</div>'; 
+					 			}
+					 		}
+						?>
+						 
+					
+				</li>						
+			</ul>	
+		<div class="tp-bannertimer"></div>
+		
+		</div>
+	</div>
+</div> <!-- end intro -->
+
+<!-- CHANGES 18-11-2013 <div id="leaderboard" class="page">
+	<section class="container-fluid">
+		<div class="row-fluid">
+			<section class="container">
+				<div class="row">
+					<article class="span9 add-bottom">
+						<h1 class="main-heading">Green Communities</h1>
+						
+					</article><!-- span12 : ends -->
+			<!-- CHANGES 18-11-2013		<article class="span2 offset1 add-bottom text-right">
+						 <h4 class="sub-heading-invert-nomargin "><span class="drop"><?php echo $sum;?></span><br>total leaves</h4>
+					</article>
+				</div><!-- row : ends -->
+					
+			<!-- CHANGES 18-11-2013	<div class="row">
+					<article class="span6">
+						<table class="table">
+						  <caption><h4 class="sub-heading text-left">Top Users</h4></caption>
+						  <thead>
+						    <tr>
+						      <th></th>
+						      <th></th>
+						      <th></th>
+						      <th>Latest</th>
+						      <th>Total</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						  
+						  <?php /*
+						  $counter=1;
+						  foreach ($accounts as $account)
+						  { ?>
+						  	<tr>
+		                    <td>
+						      	<div class="numberbox-green"><?php echo $counter;?></div>
+						      	<div class="numberbox-white"><i class="icon-arrow-up icon-white"></i></div>
+							</td>
+	                    	<td >
+	                    		
+					          	<img class="about-testimonial-icon avatar" src="<?php echo $this->baseUrl($imgPrefix."thumb-".$account->avatar); ?>"> <!-- </a> -->    
+						       	
+							</td>
+							<td>
+							<h5 class="remove-bottom col-high"><?php echo $account->fullname; ?></h5>
+							</td>
+	                    	<td>+3</td>
+	                    	<td><?php echo $account->leafs;?></td>
+	                    	
+							</tr>
+							<?php $counter++; 
+						  } */ ?>
+						  
+						  <?php
+						  
+						  for($counter=0;$counter<3;$counter++)
+						  { ?>
+						  	<tr>
+		                    <td>
+						      	<div class="numberbox-green" ><?php echo $counter+1;?></div>
+						      	<div class="numberbox-white" ><i class="icon-arrow-up icon-white"></i></div>
+							</td>
+	                    	<td >
+	                    		<?php /* <a class="" title="<?php echo $account->username; ?>" href="<?php echo $this->baseUrl('account/profile/').'?user='.$account->username;?>"> */ ?> 
+					          	
+					          	<img class="avatar  media-object" src="<?php echo $this->controller->thumbimagesfb($accounts[$counter][avatar],$this->baseUrl()); ?>"> 
+					          	<!-- <img class="avatar  media-object" src="<?php //echo $this->baseUrl($imgPrefix."thumb-".$accounts[$counter][avatar]); ?>"> --> 
+					          	    
+						       	
+				<!-- CHANGES 18-11-2013			</td>
+							<td style="vertical-align: middle;">
+							<h5 class="remove-bottom col-high"><?php echo $accounts[$counter][fullname]; ?></h5>
+							</td>
+	                    	<td style="vertical-align: middle;">+3</td>
+	                    	<td style="vertical-align: middle;"><?php echo $accounts[$counter][leafs];?></td>
+	                    	
+							</tr>
+							<?php 
+						  } ?>
+						  
+						  </tbody>
+						</table>
+					</article>
+						
+					<article class="span6">
+						<table class="table">
+						  <caption><h4 class="sub-heading text-left">Latest Activity</h4></caption>
+						  <thead>
+						    <tr>
+						      <th>User</th>
+						      <th>Info</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						  
+						    <?php /*
+						  $counter=1;
+						   foreach ($accounts as $account)
+						  { ?>
+						  	<tr>
+		                    <td>
+						      	<div class="numberbox-green"><?php echo $counter;?></div>
+						      	<div class="numberbox-white"><i class="icon-arrow-up icon-white"></i></div>
+							</td>
+	                    	<td >
+	                    		
+					          	<img class="avatar" src="<?php echo $this->baseUrl($imgPrefix."thumb-".$account->avatar); ?>"> <!-- </a> -->    
+						       	
+							</td>
+							<td>
+							<h5 class="remove-bottom col-high"><?php echo $account->fullname; ?></h5>
+							</td>
+	                    	<td>+3</td>
+	                    	<td><?php echo $account->leafs;?></td>
+	                    	
+							</tr>
+							<?php $counter++; 
+						  } */ ?>
+						  
+						 
+					<?php  foreach ( $allactivity as $activity) { ?>
+
+						<?php if ($activity->quantity>0) {?>
+						<tr>
+							<td>
+								<!-- <a class="pull-left" href="<?php echo $this->baseUrl('account/profile/').'?user='.$activity->username;?>"> -->
+								
+								
+	                    		<!-- <img class="avatar media-object thumbnail" src="<?php echo $this->baseUrl($imgPrefix."thumb-".$activity->avatar);?>"> -->
+	            <!-- CHANGES 18-11-2013        		<img class="avatar media-object" style="width:60px;height: 60px;" src="<?php echo $this->controller->thumbimagesfb($activity->avatar,$this->baseUrl());?>">
+	                    		
+							</td>
+							<td style="vertical-align: middle;">
+								<?php /* echo ucfirst($activity->username);  ?> saved <?php echo 1*$activity->glass+2*$activity->plastic+3*$activity->aluminium; ?> leafs on <?php echo date("d-M",strtotime($activity->date)) ?>! <span class="muted">(aluminium: <?php echo $activity->aluminium." * 3 leafs, plastic:".$activity->plastic." * 2 leafs, glass:".$activity->glass ?> * 1 leaf)</span> */?>
+								
+								<?php echo ucfirst($activity->username);  ?> saved <?php echo 1*$activity->glass+2*$activity->plastic+3*$activity->aluminium; ?> leafs on <?php echo date("d-M",strtotime($activity->date)) ?>! <span class="muted">
+								<br><img class="img-materials-height" src="<?php echo $this->baseUrl("/images/materials/alum.png");?>"> = <?php echo $activity->aluminium; ?>
+								<img class="img-materials-height" src="<?php echo $this->baseUrl("/images/materials/plastic.png");?>"> =<?php echo $activity->plastic; ?>
+								<img class="img-materials-height" src="<?php echo $this->baseUrl("/images/materials/glass.png");?>"> = <?php echo $activity->glass; ?></span>
+							</td>
+						</tr>
+					
+						<?php } ?>
+					<?php } ?>
+					
+						  
+						  
+						  </tbody>
+						</table>
+					</article>
+				</div>
+			</section><!-- container : ends -->
+<!-- CHANGES 18-11-2013		</div><!-- row-fuild : ends -->
+<!-- CHANGES 18-11-2013	</section> <!-- container-fluid : ends-->
+<!-- CHANGES 18-11-2013</div> <!-- about : ends -->
+
+<div id="promo1" class="promo-parallax">
+	<div class="bg1 parallax-bg"></div>
+	<section class="parallax-overlay">
+		<section class="container pad-top-res pad-bottom-res">
+			<div class="row-fluid">
+				<article class="span4">
+					<img  alt="Microsoft" title="Microsoft" class="res-img" src="<?php echo $this->baseUrl("images/partners/MS.png"); ?>"/>
+				</article>
+				<article class="span4 offset4">
+					<img   alt="" title=""  class="res-img rounded-2px" src="<?php echo $this->baseUrl("images/partners/IHU.jpg"); ?>"/>
+				</article>
+
+			</div>
+			<div class="row-fluid">
+				<article class="span4">
+					<p class="promo promo-upper-one"><span class="rounded-2px">OFFICIAL PARTNER</span></p>
+				</article>
+				<article class="span4 offset4">
+					<p class="promo promo-upper-one "><span class="rounded-2px">THE FIRST PLACE TO HOST SOCIALLGREEN</span></p>
+				</article>
+			</div>
+</div>
+
+<div id="howItWorks" class="page">
+	<section class="container-fluid">
+		<div class="row-fluid">
+			<section class="container">
+				<div class="row">
+					<article class="span12">
+						<h1 class="main-heading">How It Works ?</h1>
+						<div class="promotional add-top">
+						<!-- <object alt="How sociallgreen works?" title="How It Works?" width="1030" height="411" data="<?php //echo $this->baseUrl("images/hw.svg"); ?>" type="image/svg+xml" ></object> -->
+						<img alt="How sociallgreen works?" title="How It Works?"  src="<?php echo $this->baseUrl("images/hw.png"); ?>"/>
+						</div>
+						
+					</article><!-- span12 : ends -->
+					
+				</div><!-- row : ends -->
+
+			</section><!-- container : ends -->
+		</div><!-- row-fuild : ends -->
+	</section> <!-- container-fluid : ends-->
+</div> <!-- services : ends -->
+			<!-- 
+			<div class="row">
+				<article class="span12 align-center">
+				<p class="promo promo-upper-one"><span>Glor is a perfect theme for your creative portfolio</span></p>
+				</article>
+			</div>
+		
+			<div class="row">
+				<article class="span12 align-center">
+				<p class="promo promo-upper-one-sub"><span>Elena Moore, Anonymus LLC.</span></p>
+				</article>
+			</div>
+			 -->
+		</section>
+	</section>
+</div>
+
+<!-- CHANGES 18-11-2013  <div id="promo2" class="promo-parallax">
+	<div class="bg2 parallax-bg"></div>
+	<section class="parallax-overlay">
+		<section class="container pad-top-res pad-bottom-res">
+			<div class="row">
+				<article class="span12 align-center">
+					<img   alt="" title=""  class="res-img rounded-2px" src="<?php echo $this->baseUrl("images/partners/IHU.jpg"); ?>"/>
+				</article>
+			</div>
+			<div class="row">
+				<article class="span12 align-center ">
+					<p class="promo promo-upper-one "><span class="rounded-2px">THE FIRST PLACE TO HOST SOCIALLGREEN</span></p>
+				</article>
+			</div>
+		</section>
+	</section>
+</div>  -->
+
+<!-- CHANGES 18-11-2013 <div id="downApp" class="page">
+	<section class="container-fluid">
+		<div class="row-fluid">
+			<section class="container">
+				<div class="row">
+					<article class="span12">
+						<h1 class="main-heading">Sociallgreen App</h1>
+					</article><!-- span12 : ends -->
+<!-- CHANGES 18-11-2013				</div><!-- row : ends -->
+				
+<!-- CHANGES 18-11-2013				<div class="row pad-top testimonial-wrap">
+					<article class="span12">
+			              <section class="row">
+			              <img class="about-testimonial-icon span3 offset1 pad-left pad-top visible-desktop" alt="Sociallgreen App" title="Sociallgreen"  src="<?php echo $this->baseUrl("images/mobile/mo2.png"); ?>"/>
+			              <!-- <object class="about-testimonial-icon span3 offset1 pad-left visible-desktop" width="245" height="432" alt="Sociallgreen App" title="Sociallgreen" data="<?php //echo $this->baseUrl("images/mobile/mo2.svg"); ?>" type="image/svg+xml"></object> -->
+<!-- CHANGES 18-11-2013			                <img class="about-testimonial-icon span3 offset1 pad-left visible-phone visible-tablet" style="width: 200px; height: 346px;" alt="Sociallgreen App" title="Sociallgreen"  src="<?php echo $this->baseUrl("images/mobile/mo2.png"); ?>"/>
+			                <!--  <object class="about-testimonial-icon span3 offset1 pad-left visible-phone visible-tablet" width="200" height="346" alt="Sociallgreen App" title="Sociallgreen" data="<?php //echo $this->baseUrl("images/mobile/mo2.svg"); ?>" type="image/svg+xml"></object> -->
+			                
+<!-- CHANGES 18-11-2013			                <div class="span6 offset1 pad-top" >
+			                	<!-- <h4 class="sub-heading">The internet of recycling bins is here</h4> -->
+			<!-- CHANGES 18-11-2013					<p class="pad-top"><span class="drop">S</span>o you thing that the planet needs your help? You know that lots of waste may be recycled in order to save some energy for us and a bit of CO2 for the atmosphere? Grab your chance to be a green leader at your community. This app is your absoolute game pad for saving the planet.</p>
+								
+								<nav class="about-clients">
+									<h2><span style="color: #65B524">Available soon!</span></h2>
+									<a href="#"><img alt="Appstore" title="Appstore"  src="<?php echo $this->baseUrl("images/AppStore.png"); ?>"/></a>
+									<a href="#"><img alt="Play store" title="Play store" style="width:auto; height: 44px;"  src="<?php echo $this->baseUrl("images/Googleplay.png"); ?>"/></a>
+								</nav>
+								
+			                </div>
+			                
+			                <!-- <blockquote class="span8 remove-bottom">Cras viverra pharetra consectetur. Donec faucibus iaculis felis et sagittis. Mauris in tortor mi, vel porta. Vivamus sagittis rutrum nulla, suscipit euismod avitae. Fusce tincidunt porttitor nisi, ut venenatis neque.
+			                </blockquote> -->
+<!-- CHANGES 18-11-2013			              </section>
+					</article>
+					
+				</div><!-- row : ends -->
+
+<!-- CHANGES 18-11-2013			</section><!-- container : ends -->
+<!-- CHANGES 18-11-2013		</div><!-- row-fuild : ends -->
+<!-- CHANGES 18-11-2013	</section> <!-- container-fluid : ends-->
+<!-- CHANGES 18-11-2013 </div> <!-- team : ends -->
+
+<div id="promo2" class="promo-parallax">
+	<div class="bg2 parallax-bg"></div>
+	<section class="parallax-overlay">
+
+	<section class="container pad-top-res pad-bottom-res">
+	<div class="row">
+		<article class="span12 align-center">
+			<img alt="Ennovation 2012" title="Ennovation 2012" class="res-img rounded-2px" src="<?php echo $this->baseUrl("images/partners/ennovationAspro.png"); ?>"/>
+		</article>
+
+	</div>
+
+	<div class="row">
+		<article class="span12 align-center">
+		<p class="promo promo-upper-one"><span class="rounded-2px">Winners of 2012 Competition!</span></p>
+		</article>
+	</div>
+	</section>
+
+	</section>
+</div>
+
+<div id="areYou" class="page">
+	<section class="container-fluid">
+		<div class="row-fluid">
+			<section class="container">
+				
+				<div class="row">
+					<article class="span12">
+						<h1 class="main-heading">The internet of recycling is here</h1>
+					</article><!-- span12 : ends -->
+				</div><!-- row : ends -->
+
+				<div class="row pad-top testimonial-wrap">
+					<article class="span12">
+			              <section class="row">
+			              <!-- <object alt="Bin connected to the inetrnet" title="Sociallgreen" width="426" height="435" data="<?php //echo $this->baseUrl("images/areU2.svg"); ?>" type="image/svg+xml" class="about-testimonial-icon span5 pad-left"></object>  -->
+			                <img alt="Bin connected to the inetrnet" title="Sociallgreen"  src="<?php echo $this->baseUrl("images/home/kados.png"); ?>" class="about-testimonial-icon span4 pad-top pad-left">
+			                <div class="span6 offset1 pad-top"> 
+			                	
+								<!-- <p class="pad-top"><span class="drop">C</span>onnect your Brand name with the mass power of social-networks in a green background. Change people's behaviour supporting them for their recycling contribution. Get your clean Recycling Data in a Glance. Organize your targeted marketing campaigns using fun. Showcase your Sociallgreen Badges. Be a beta tester now!</p> -->
+								<p class="pad-top"><span class="drop">C</span>onnect recyling with fun through internet. Change people's behaviour supporting them for their recycling contribution. Get your clean Recycling Data in a Glance. Link your Brand name with the mass power of social-networks in a green background. Showcase your Sociallgreen Badges.  Be a beta tester now!</p>
+								
+								<!-- <dl class="dl-horizontal">
+								  <dt>Package Generator</dt>
+								  <dd>Searching for an efficient way to Get your packages back? motivate your end-customer to contribute into the reusing process.</dd>
+								  <br>
+								  <dt>Organization</dt>
+								  <dd>Want to reach your recycling targets and store your green data? Let your people play for it using Sociallgreen.</dd>
+								</dl> -->
+								<div class="row pad-top">
+									<article class="span4 offset4 pad-top">
+										<a id="contact-linker" class="btn btn-glor2 btn-big " href="#contact"><h2>Claim your beta bin!</h2></a>
+									</article>
+								</div>			
+			                </div>
+			                
+			                <!-- <blockquote class="span8 remove-bottom">Cras viverra pharetra consectetur. Donec faucibus iaculis felis et sagittis. Mauris in tortor mi, vel porta. Vivamus sagittis rutrum nulla, suscipit euismod avitae. Fusce tincidunt porttitor nisi, ut venenatis neque.
+			                </blockquote> -->
+			              </section>
+					</article>
+				</div><!-- row : ends -->
+			</section><!-- container : ends -->
+		</div><!-- row-fuild : ends -->
+	</section> <!-- container-fluid : ends-->
+</div> <!-- features : ends -->
+
+
+
+<div id="promo4" class="promo-parallax">
+	<div class="bg4 parallax-bg"></div>
+	<section class="parallax-overlay">
+
+	<section class="container pad-top-res pad-bottom-res">
+	<div class="row">
+		<article class="span12 align-center">
+		<img class="res-img" style="width:171px;" alt="Websummit" title="Websummit" src="<?php echo $this->baseUrl("images/websummit.png"); ?>"/>
+		</article>
+	</div>
+
+	<div class="row">
+		<article class="span12 align-center">
+			<p class="promo promo-upper-one"><span style="-webkit-border-radius: 4px;border-radius: 4px;">Attendance at 2013 websummit</span></p>
+		</article>
+	</div>
+	</section>
+	</section>
+</div>
+
+
+<div id="team" class="page">
+	<section class="container-fluid">
+		<div class="row-fluid">
+			<section class="container">
+				
+				<div class="row">
+					<article class="span12">
+						<h1 class="main-heading">Team</h1>
+						<div class="promotional add-top">Sociallgreen is a Green tech Startup from Thessaloniki, Northern Greece. The team tries to change the way people recycle, exploiting modern technologies and concepts. At the same time Sociallgreen equips companies with absolute CSR channel, concerning recycling actions.
+							</div>
+					</article><!-- span12 : ends -->
+				</div><!-- row : ends -->
+				
+				<div class="row">
+					<article class="span8 offset2" >
+						<!-- <h1 style="margin-left:7%;">The team</h1>
+						<p style="margin-left:7%;margin-right:7%;margin-bottom:7%;">"Social Green is a Green tech Startup from Thessaloniki, Northern Greece. The team tries to change the way people recycle, exploiting modern technologies and concepts. At the same time Social-Green equips companies with absolute CSR channel, concerning recycling actions."</p>
+						  
+	 					<img class="teamTextImage" src='<?php // echo $this->baseUrl("images/teamPhotos/TeamNew.png"); ?>'>
+	 					-->
+					</article>	
+				</div>
+				
+				<?php
+				$counter = 0;
+				foreach ($team as $member)
+				{
+					if ($counter==0 || $counter==4)
+					{ ?>
+						<div class="row team-wrap add-top">
+				 	<?php
+					}
+					?>
+					<article class="span3 team-block">
+						<img class="mikroteri"alt="<?php echo $member[0]; ?>" title="<?php echo $member[0]; ?>"  src="<?php echo $this->baseUrl("images/teamPhotos/photos/mikres/".$member[2]); ?>"/>
+				 		<h4><?php echo $member[0]; ?></h4>
+						<h5><?php echo $member[1]; ?></h5>
+				 		<nav class="pad-top-half add-top-half pad-bottom add-bottom-half">
+														
+							<a href="<?= $member[4] ?>" target="_blank"><img src="<?php echo $this->baseUrl("images/icons/t03.png"); ?>"/></a>
+					 		
+					 		<a href="<?= $member[6] ?>" target="_blank"><img src="
+					 		<?php 
+					 		if  ($member[5]=="aboutme")
+					 		{ 
+					 			echo $this->baseUrl("images/icons/me30x30.png");
+					 		}
+					 		elseif ($member[5]=="twitter")
+							{
+					 			echo $this->baseUrl("images/icons/t01.png");
+					 		} elseif($member[5]=="mail") {
+					 			echo $this->baseUrl("images/fairhead-icons/fc-webicon-mail.png");
+				 		} ?>"/></a>
+							
+							
+						</nav>
+					</article>
+					<?php 
+					if ($counter==3 || $counter==7)
+					{
+						echo "</div>"; 
+					}
+					
+					$counter++;
+				} ?>
+		
+			</section><!-- container : ends -->
+		</div><!-- row-fuild : ends -->
+	</section> <!-- container-fluid : ends-->
+</div> <!-- team : ends -->
+
+
+<div id="promo5" class="promo-parallax">
+	<div class="bg5 parallax-bg"></div>
+	<section class="parallax-overlay">
+
+	<section class="container pad-top-res pad-bottom-res">
+	<div class="row">
+		<article class="span12 align-center">
+		<img class="res-img rounded-2px" alt="Founation" title="Founation" src="<?php echo $this->baseUrl("images/partners/Founation.png"); ?>"/>
+		</article>
+	</div>
+
+	<div class="row">
+		<article class="span12 align-center">
+			<p class="promo promo-upper-one"><span style="-webkit-border-radius: 4px;border-radius: 4px;">OUR WORKING SPACE IN ATHENS</span></p>
+		</article>
+	</div>
+	</section>
+	</section>
+</div>
+
+
+
+
+<div id="contact" class="page">
+	<section class="container-fluid">
+		<div class="row-fluid">
+			<section class="container">
+
+				<div class="row">
+					<article class="span12">
+						<h1 class="main-heading">Contact Us</h1>						
+					</article><!-- span12 : ends -->	
+				</div><!-- row : ends -->
+
+				<div class="row">
+            		<div class="span8 contact"><!--Begin page content column-->
+						<?php /*
+	                    <div class="alert success">
+	                        Well done! You successfully read this important alert message. 
+	                    </div>
+	                    */ ?>
+						<h4 class="sub-heading">Send a message to us</h4>
+						<?php /*
+	                    <form name="myform" id="contactForm" action="sendcontact.php" enctype="multipart/form-data" method="post">  
+	
+	                        <div id="fname"  class="alert alert-error error">
+	                        Name must not be empty
+	                        </div>
+	                        <div id="fmail" class="alert alert-error  error">
+	                        Please provide a valid email
+	                        </div>
+	                        <div id="fmsg" class="alert alert-error  error">
+	                        Message should not be empty
+	                        </div>
+	
+	                        <div class="input-prepend">
+	                            <span class="add-on"><i class="icon-user"></i></span>
+	                            <input class="span3 offset1" required  size="16" type="text" name="name" id="name" placeholder="Name">
+	                        </div>
+	                        
+	                        <div class="input-prepend">
+	                            <span class="add-on"><i class="icon-envelope"></i></span>
+	                            <input class="span4" required  size="16" type="email" name="email" id="email" placeholder="Email Address">
+	                        </div>
+	                        <textarea name="message" required  id="msg" class="span10" placeholder="Message"></textarea>
+	                        <button type="submit" name="submit" id="submit" class="btn btn-glor">Send Message</button>
+	                    </form>
+	                    */ ?>
+	                    
+	                    <?= $this->Errors($this->errors); ?>
+	                    
+	                    <?php echo $this->contactForm->setAction($this->url(array('controller'=>'about', 'action'=>'contact' ), null, TRUE)); ?>
+	                    
+	                    
+            		</div> <!--span8 End-->
+
+        <!-- Sidebar
+        ================================================== --> 
+        <div class="span4 sidebar page-sidebar"><!-- Begin sidebar column -->
+            <h4 class="sub-heading">Feel free to have a visit</h4>
+            <address>
+            <strong>Sociallgreen P.C.</strong><br>
+            10, Stratigou Napoleontos Zerva, 54640<br>
+            Thessaloniki, GRE<br>
+            </address>
+
+            
+            <nav class="pad-top-half add-top-half pad-bottom add-bottom-half">
+				<a target="_blank" href="https://www.facebook.com/Sociallgreen"><img alt="Facebook" title="Like us on Facebook"  src="<?php echo $this->baseUrl("images/icons/t02.png"); ?>"/></a>
+				<a target="_blank" href="https://twitter.com/sociallgreen"><img alt="Twitter" title="Follow us on Twitter"  src="<?php echo $this->baseUrl("images/icons/t01.png"); ?>"/></a>
+				<a target="_blank" href="http://www.linkedin.com/company/2937639?trk=tyah"><img alt="LinkedIn" title="LinkedIn"  src="<?php echo $this->baseUrl("images/icons/t03.png"); ?>"/></a>
+			</nav>
+        </div><!-- span4 / End sidebar column -->
+
+
+        </div>
+        <!-- row ends -->
+			</section>
+		</div>
+	</section> <!-- end container-fluid -->
+	
+</div> <!-- end contact -->

@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <?php //echo $this->headTitle(); ?>
+        <?php echo $this->headLink()->appendStylesheet($this->baseUrl('css/mainStyle.css')); ?>
+         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+         <!-- <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'> -->
+         <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed&subset=latin,greek' rel='stylesheet' type='text/css'>
+         <?php $this->headTitle()->append($this->title); echo $this->headTitle(); ?>
+    </head>
+    <body>
+    <section id="header">
+    	<header>
+    		<h1>Social Green Project</h1>
+    		<img id="logo" src="<?php echo $this->baseUrl('images/social.png') ?>">
+    	</header>
+    <nav>
+    	<ul>
+    		<li><a href="<?php echo $this->url(array('controller'=>'index'), null, TRUE); ?>">Home</a></li>
+    		<li><a href="<?php echo $this->url(array('controller'=>'greenladder'), null, TRUE); ?>">Game</a></li>
+    		<li><a href="<?php echo $this->url(array('controller'=>'account'), null, TRUE); ?>">Users</a></li>
+    		<li><a href="<?php echo $this->url(array('controller'=>'account', 'action'=>'register'), null, TRUE); ?>">Register</a></li>
+    	</ul>
+    </nav>
+	<div id="header">
+	<div class="logged-in-as" id="logged-in-as">
+		<?php echo $this->loggedInAs(); ?>
+	</div>
+	</div>
+	
+    
+    </section>
+    <h3><?php echo $this->title; ?></h3>
+    
+        <?php echo $this->layout()->content; ?>
+        
+        <section id="footer" style="text-align:right;">
+        <?php echo date("d-m-Y");	?>
+        </section>
+        
+    </body>
+</html>
